@@ -361,23 +361,18 @@
                 var template = function(data) {
                         var s = "";
                         $.each(data, function(index, item) {
-
-                                    s += `<div class="item"><div class="text">${item.name}<div>${item.children`<div class="row">${template(item.children)}</div>`}</div>`;
-                })
+                                    s += `<div class="row"><div class="item">${item.name}${item.children?`<div class="ul">${template(item.children)}</div>`:''}</div></div>`;
+                        })
 
                 
-        
-
                 return s;
 
             };
-            $.each(data,function(index,item){
-                //    console.log(item.children);
-                    // str+=template(item.children);
-                    console.log(item)
-            })
+            
+           
+            
 
-            return str;
+            return   template(data);
            
         }
         
