@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src=https://dss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/jquery/jquery-1.10.2.min_65682a2.js></script>
+    <style>
+        #tree_dom {
+            white-space: nowrap;
+            position: absolute;
+        }
+        
+        .row {
+            zoom: 1;
+        }
+        
+        .row::after {
+            content: " ";
+            display: block;
+            clear: both;
+        }
+        
+        .item {
+            display: table-cell;
+            padding: 0px 10px;
+            position: relative;
+        }
+        
+        .line {
+            margin: auto;
+            height: 20px;
+        }
+        
+        .line .left {
+            width: 50%;
+            height: 100%;
+            float: left;
+            box-sizing: border-box;
+            border-right: solid 2px red;
+            border-bottom: solid 4px red;
+        }
+        
+        .line .right {
+            width: 50%;
+            height: 100%;
+            float: left;
+            box-sizing: border-box;
+            border-left: solid 2px red;
+            border-bottom: solid 4px red;
+        }
+        
+        .row .item:first-child {
+            margin-left: 0px;
+        }
+        
+        .content {
+            text-align: center;
+            background: #eee;
+            width: 120px;
+            margin: auto;
+            box-sizing: border-box;
+            padding: 10px;
+            border-radius: 4px;
+            white-space: normal;
+        }
+        
+        .lineTop {
+            width: 4px;
+            height: 20px;
+            background-color: red;
+            margin: auto;
+        }
+        
+        .leftWhite {
+            width: 50%;
+            height: 4px;
+            background-color: #fff;
+            margin-top: -4px;
+            position: absolute;
+            z-index: 1;
+            margin-left: -2px;
+            left: 0px;
+        }
+        
+        .rightWhite {
+            width: 50%;
+            height: 4px;
+            background-color: #fff;
+            margin-top: -4px;
+            position: absolute;
+            z-index: 1;
+            margin-right: -2px;
+            right: 0px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="tree_dom">
+        <div class="row">
+            <div class="item">
+                <div class="content">
+                    这是内容1
+                </div>
+                <!-- <div class="lineTop"></div> -->
+                <div class="line">
+                    <div class="left top">
+                    </div>
+                    <div class="right top">
+                    </div>
+                    <div style="clear: both;"></div>
+                </div>
+                <div class="row">
+                    <div class="item">
+                        <div class="leftWhite"></div>
+                        <div class="lineTop">
+                        </div>
+                        <div class="content">
+                            这是内容1-1
+                        </div>
+                        <div class="line">
+                            <div class="left top">
+                            </div>
+                            <div class="right top">
+                            </div>
+                            <div style="clear: both;"></div>
+                        </div>
+                        <div class="row">
+                            <div class="item">
+                                <div class="leftWhite"></div>
+                                <div class="lineTop">
+                                </div>
+                                <div class="content">
+                                    这是内容1-1-1
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="lineTop">
+
+                                </div>
+                                <div class="content">
+                                    这是内容1-1-2
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="rightWhite"></div>
+                                <div class="lineTop">
+
+                                </div>
+                                <div class="content">
+                                    这是内容1-1-3
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="lineTop">
+
+                        </div>
+                        <div class="content">
+                            这是内容1-2
+                        </div>
+                        <div class="line">
+                            <div class="left top">
+
+                            </div>
+                            <div class="right top">
+
+                            </div>
+                            <div style="clear: both;"></div>
+                        </div>
+                        <div class="row">
+                            <div class="item">
+                                <div class="leftWhite"></div>
+                                <div class="lineTop">
+
+                                </div>
+                                <div class="content">
+                                    这是内容1-2-1
+                                </div>
+                            </div>
+                            <!-- <div class="item">
+                                <div class="lineTop">
+
+                                </div>
+                                <div class="content">
+                                    这是内容1-2-2
+                                </div>
+                            </div> -->
+                            <div class="item">
+
+                                <div class="lineTop">
+
+                                </div>
+                                <div class="content">
+                                    这是内容1-2-3
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="rightWhite"></div>
+
+                                <div class="lineTop">
+
+                                </div>
+                                <div class="content">
+                                    这是内容1-2-4
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item tags">
+                        <div class="rightWhite"></div>
+                        <div class="lineTop">
+                        </div>
+                        <div class="content">
+                            tags标签内容
+                        </div>
+                        <div class="line">
+                            <div class="left top">
+                            </div>
+                            <div class="right top">
+                            </div>
+                            <div style="clear: both;"></div>
+                        </div>
+                        <div class="row">
+                            <div class="item">
+                                <div class="rightWhite"></div>
+                                <div class="leftWhite"></div>
+                                <div class="lineTop"></div>
+                                <div class="content">
+                                    tags子标签内容
+                                </div>
+                                <div class="line">
+                                    <div class="left top">
+                                    </div>
+                                    <div class="right top">
+                                    </div>
+                                    <div style="clear: both;"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="item">
+                                        <div class="leftWhite"></div>
+                                        <div class="lineTop"></div>
+                                        <div class="content">
+                                            内容
+                                        </div>
+                                    </div>
+                                    <div class="item">
+
+                                        <div class="lineTop"></div>
+                                        <div class="content">
+                                            内容
+                                        </div>
+                                    </div>
+
+                                    <div class="item">
+                                        <div class="rightWhite"></div>
+                                        <div class="lineTop"></div>
+                                        <div class="content">
+                                            内容
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div id="orgTree">
+
+    </div>
+
+</body>
+
+</html>
+<script>
+    var dataArray = [{
+        name: "根节点",
+        children: [{
+            name: "1",
+            children: [{
+                name: "1-1",
+            }, {
+                name: "1-2"
+            }]
+        }, {
+            name: "2",
+            children: [{
+                name: "2-1",
+            }, {
+                name: "2-2"
+            }]
+        }, {
+            name: "3",
+            children: [{
+                name: "3-1",
+            }, {
+                name: "3-2"
+            }]
+        }, {
+            name: "4",
+            children: [{
+                name: "4-1",
+                children: [{
+                    name: "4-1-1"
+                }, {
+                    name: "4-1-2"
+                }]
+            }]
+        }]
+    }];
+    !(function(name, factory) {
+        if (typeof exports === 'object') {
+            module.exports = factory();
+        } else if (typeof define === 'function' && define.amd) {
+
+            define(factory);
+        } else {
+
+            window[name] = factory();
+        }
+
+    })("jqOrgTree", function() {
+            var namespace = "jqOrgTree",
+                jqOrgTree = {},
+                classList = {
+
+                    isChild: "class='lineTop'"
+                },
+                //带有子节点的需要这条dom树
+                lineDom = "<div class='line'><div class='left top'></div><div class='right top'></div><div style='clear:both'></div></div>",
+                //左叶子树需要
+                leftDom = "<div class=leftWhite></div>",
+                rightDom = "<div class=rightWhite></div>",
+                template = function() {
+                    var ltemList = "";
+                    return itemList;
+
+                };
+
+
+            /**开始编码**/
+
+
+
+            jqOrgTree[namespace] = function() {
+
+            }
+
+
+
+            function buildNode(data) {
+                var str = "";
+                var template = function(data) {
+                        var s = "";
+                        $.each(data, function(index, item) {
+
+                                    s += `<div class="item"><div class="text">${item.name}<div>${item.children`<div class="row">${template(item.children)}</div>`}</div>`;
+                })
+
+                
+        
+
+                return s;
+
+            };
+            $.each(data,function(index,item){
+                //    console.log(item.children);
+                    // str+=template(item.children);
+                    console.log(item)
+            })
+
+            return str;
+           
+        }
+        
+        document.getElementById('orgTree').innerHTML=buildNode(dataArray)
+
+        // console.log(buildNode(dataArray));
+
+
+    })
+</script>

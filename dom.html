@@ -1,0 +1,392 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>jOrgChart - A jQuery OrgChart Plugin</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/jquery.jOrgChart.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link href="css/prettify.css" type="text/css" rel="stylesheet">
+
+    <script type="text/javascript" src="prettify.js"></script>
+
+    <!-- jQuery includes -->
+    <script src="http://libs.baidu.com/jquery/1.7.1/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/jqueryui/1.8.16/jquery-ui.min.js"></script>
+
+
+    <script src="jquery.jOrgChart.js"></script>
+
+    <script>
+        // jQuery(document).ready(function() {
+        //     $("#org").jOrgChart({
+        //         chartElement: '#chart',
+        //         dragAndDrop: true
+        //     });
+        // });
+    </script>
+</head>
+
+<body onload="prettyPrint();">
+
+    <ul id="org" style="display:none">
+        <li>
+            一级
+            <ul>
+                <li class="DIY">Beer</li>
+                <li>
+                    Vegetables
+
+                    <ul>
+                        <li>Pumpkin</li>
+                        <li>
+
+                            <p>A link and paragraph is all we need.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>Fruit
+                    <ul>
+                        <li>Apple
+                            <ul>
+                                <li>Granny Smith</li>
+                            </ul>
+                        </li>
+                        <li>Berries
+                            <ul>
+                                <li>Blueberry</li>
+                                <li><img src="images/raspberry.jpg" alt="Raspberry"></li>
+                                <li>Cucumber</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>Bread</li>
+                <li class="collapsed">Chocolate
+                    <ul>
+                        <li>Topdeck</li>
+                        <li>Reese's Cups</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <div id="chart" class="orgChart">
+        <div class="jOrgChart">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tbody>
+                    <tr class="node-cells">
+                        <td class="node-cell" colspan="10">
+                            <div class="node ui-draggable ui-droppable" style="cursor: n-resize;">
+                                一级
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="10">
+                            <div class="line down"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="line left ">&nbsp;</td>
+                        <td class="line right top">&nbsp;</td>
+                        <td class="line top">&nbsp;</td>
+                        <td class="line top">&nbsp;</td>
+                        <td class="line top left">&nbsp;</td>
+                        <td class="line right">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="node-container line left" colspan="5">
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                <tbody>
+
+                                    <tr class="node-cells">
+                                        <td class="node-cell" colspan="5">
+                                            <div class="node branch ui-draggable ui-droppable">Beer</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td class="node-container line right" colspan="5">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="10">
+                            <div class="line down"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="line left">&nbsp;</td>
+                        <td class="line right top">&nbsp;</td>
+                        <td class="line left top">&nbsp;</td>
+                        <td class="line right top">&nbsp;</td>
+                        <td class="line left top">&nbsp;</td>
+                        <td class="line right top">&nbsp;</td>
+                        <td class="line left top">&nbsp;</td>
+                        <td class="line right top">&nbsp;</td>
+                        <td class="line left top">&nbsp;</td>
+                        <td class="line right">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="node-container" colspan="2">
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                <tbody>
+
+                                    <tr class="node-cells">
+                                        <td class="node-cell" colspan="2">
+                                            <div class="node branch ui-draggable ui-droppable">Beer</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td class="node-container" colspan="2">
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                <tbody>
+                                    <tr class="node-cells">
+                                        <td class="node-cell" colspan="4">
+                                            <div class="node ui-draggable ui-droppable" style="cursor: n-resize;">
+                                                Vegetables
+
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <div class="line down"></div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="line left">&nbsp;</td>
+                                        <td class="line right top">&nbsp;</td>
+                                        <td class="line left top">&nbsp;</td>
+                                        <td class="line right">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="node-container" colspan="2">
+                                            <table cellpadding="0" cellspacing="0" border="0">
+                                                <tbody>
+                                                    <tr class="node-cells">
+                                                        <td class="node-cell" colspan="2">
+                                                            <div class="node ui-draggable ui-droppable">Pumpkin</div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                        <td class="node-container" colspan="2">
+                                            <table cellpadding="0" cellspacing="0" border="0">
+                                                <tbody>
+                                                    <tr class="node-cells">
+                                                        <td class="node-cell" colspan="2">
+                                                            <div class="node ui-draggable ui-droppable">
+
+                                                                <p>A link and paragraph is all we need.</p>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td class="node-container" colspan="2">
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                <tbody>
+                                    <tr class="node-cells">
+                                        <td class="node-cell" colspan="4">
+                                            <div class="node ui-draggable ui-droppable" style="cursor: n-resize;">Fruit
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <div class="line down"></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="line left">&nbsp;</td>
+                                        <td class="line right top">&nbsp;</td>
+                                        <td class="line left top">&nbsp;</td>
+                                        <td class="line right">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="node-container" colspan="2">
+                                            <table cellpadding="0" cellspacing="0" border="0">
+                                                <tbody>
+                                                    <tr class="node-cells">
+                                                        <td class="node-cell" colspan="2">
+                                                            <div class="node ui-draggable ui-droppable" style="cursor: n-resize;">Apple
+
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">
+                                                            <div class="line down"></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="line left">&nbsp;</td>
+                                                        <td class="line right">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="node-container" colspan="2">
+                                                            <table cellpadding="0" cellspacing="0" border="0">
+                                                                <tbody>
+                                                                    <tr class="node-cells">
+                                                                        <td class="node-cell" colspan="2">
+                                                                            <div class="node ui-draggable ui-droppable">Granny Smith</div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                        <td class="node-container" colspan="2">
+                                            <table cellpadding="0" cellspacing="0" border="0">
+                                                <tbody>
+                                                    <tr class="node-cells">
+                                                        <td class="node-cell" colspan="6">
+                                                            <div class="node ui-draggable ui-droppable" style="cursor: n-resize;">Berries
+
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="6">
+                                                            <div class="line down"></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="line left">&nbsp;</td>
+                                                        <td class="line right top">&nbsp;</td>
+                                                        <td class="line left top">&nbsp;</td>
+                                                        <td class="line right top">&nbsp;</td>
+                                                        <td class="line left top">&nbsp;</td>
+                                                        <td class="line right">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="node-container" colspan="2">
+                                                            <table cellpadding="0" cellspacing="0" border="0">
+                                                                <tbody>
+                                                                    <tr class="node-cells">
+                                                                        <td class="node-cell" colspan="2">
+                                                                            <div class="node ui-draggable ui-droppable">Blueberry</div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                        <td class="node-container" colspan="2">
+                                                            <table cellpadding="0" cellspacing="0" border="0">
+                                                                <tbody>
+                                                                    <tr class="node-cells">
+                                                                        <td class="node-cell" colspan="2">
+                                                                            <div class="node ui-draggable ui-droppable"><img src="images/raspberry.jpg" alt="Raspberry"></div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                        <td class="node-container" colspan="2">
+                                                            <table cellpadding="0" cellspacing="0" border="0">
+                                                                <tbody>
+                                                                    <tr class="node-cells">
+                                                                        <td class="node-cell" colspan="2">
+                                                                            <div class="node ui-draggable ui-droppable">Cucumber</div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td class="node-container" colspan="2">
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                <tbody>
+                                    <tr class="node-cells">
+                                        <td class="node-cell" colspan="2">
+                                            <div class="node ui-draggable ui-droppable">Bread</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td class="node-container" colspan="2">
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                <tbody>
+                                    <tr class="node-cells contracted">
+                                        <td class="node-cell" colspan="4">
+                                            <div class="node ui-draggable ui-droppable" style="cursor: s-resize;">Chocolate
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr style="visibility: hidden;">
+                                        <td colspan="4">
+                                            <div class="line down"></div>
+                                        </td>
+                                    </tr>
+                                    <tr style="visibility: hidden;">
+                                        <td class="line left">&nbsp;</td>
+                                        <td class="line right top">&nbsp;</td>
+                                        <td class="line left top">&nbsp;</td>
+                                        <td class="line right">&nbsp;</td>
+                                    </tr>
+                                    <tr style="visibility: hidden;">
+                                        <td class="node-container" colspan="2">
+                                            <table cellpadding="0" cellspacing="0" border="0">
+                                                <tbody>
+                                                    <tr class="node-cells">
+                                                        <td class="node-cell" colspan="2">
+                                                            <div class="node ui-draggable ui-droppable">Topdeck</div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                        <td class="node-container" colspan="2">
+                                            <table cellpadding="0" cellspacing="0" border="0">
+                                                <tbody>
+                                                    <tr class="node-cells">
+                                                        <td class="node-cell" colspan="2">
+                                                            <div class="node ui-draggable ui-droppable">Reese's Cups</div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+</body>
+
+</html>
