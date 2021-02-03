@@ -19,16 +19,40 @@
     <script src="http://libs.baidu.com/jqueryui/1.8.16/jquery-ui.min.js"></script>
     <script src="jquery.jOrgChart.js"></script>
     <script>
+        function renderTag() {
+            var tag = $($(".tags").html()),
+                tagHeight = null,
+                tagBox = $(".jOrgChart>table tr:eq(1)>td");
+            tagBox.append(tag);
+            tagHeight = tag.outerHeight();
+
+            tagBox.css({
+                position: "relative",
+                height: tagHeight + "px"
+            })
+            tagBox.children(".line.down").css({
+                height: "100%"
+            });
+            tagBox.css({
+                height: tagHeight + 60 + "px"
+            })
+            tag.css({
+                position: "absolute",
+                right: 0 + "px",
+                top: "50%",
+                marginTop: -tagHeight / 2 + "px"
+            })
+            tag.children(".line").css({
+                width: tag.position().left - tagBox.outerWidth() / 2 + "px",
+                right: tag.outerWidth() - 4 + "px"
+            })
+        }
         jQuery(document).ready(function() {
             $("#org").jOrgChart({
                 chartElement: '#chart',
-                dragAndDrop: true
+                dragAndDrop: false
             });
-
-            $(".jOrgChart>table tr:eq(1) .line.down").css({
-                position: "relative",
-                height: "100px"
-            }).append($(".tags").html())
+            renderTag();
 
         });
     </script>
@@ -104,11 +128,9 @@
         </li>
     </ul>
     <div class="tags" style="display:none;">
-        <div style="width:120px;height:40px;border:solid 3px #000;position:absolute; left:120px;top:20px">
+        <div style="width:120px;height:120px;border:solid 3px #000;">
             这是一个标签节点
-            <div class="line" style="height:4px;width:120px;background:#000;position: absolute;margin-left:-100%;top:50%;margin-top:-1px;">
-
-            </div>
+            <div class="line" style="height:4px;width:120px;background:#000;position: absolute;margin-left:-100%;top:50%;margin-top:-1px;"></div>
         </div>
     </div>
 

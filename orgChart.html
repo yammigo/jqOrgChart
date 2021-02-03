@@ -8,7 +8,6 @@
     <script src=https://dss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/jquery/jquery-1.10.2.min_65682a2.js></script>
     <style>
         #tree_dom {
-            white-space: nowrap;
             position: absolute;
         }
         
@@ -94,6 +93,29 @@
             margin-right: -2px;
             right: 0px;
         }
+        
+        .tag {
+            padding: 10px;
+            background-color: #eee;
+            border-radius: 4px;
+            top: 50%;
+            width: 120px;
+            height: 60px;
+        }
+        
+        .tagBox {
+            height: 12px;
+            overflow: hidden;
+            width: 1500px;
+        }
+        
+        .tagBox div {
+            float: left;
+            width: 50%;
+            height: 12px;
+            background-color: goldenrod;
+            /* border-bottom: solid 4px red; */
+        }
     </style>
 </head>
 
@@ -112,6 +134,10 @@
                     <div class="right top">
                     </div>
                     <div style="clear: both;"></div>
+                </div>
+                <div class="tagBox">
+                    <div class="tagLeft"></div>
+                    <div class="tagRight"></div>
                 </div>
                 <div class="row">
                     <div class="item">
@@ -273,7 +299,7 @@
         </div>
 
     </div>
-    <div id="orgTree">
+    <div id="orgTree" style="position:absolute;top:800px;">
 
     </div>
 
@@ -282,21 +308,37 @@
 </html>
 <script>
     var dataArray = [{
-        name: "根节点",
+        name: "root",
         children: [{
             name: "1",
             children: [{
                 name: "1-1",
             }, {
                 name: "1-2"
+            }, {
+                name: "1-3",
+            }, {
+                name: "zop",
+                type: "tag"
             }]
         }, {
             name: "2",
             children: [{
-                name: "2-1",
-            }, {
-                name: "2-2"
-            }]
+                    name: "2-1",
+                    children: [{
+                        name: "2-1-1"
+                    }]
+                }, {
+                    name: "2-2",
+                    children: [{
+                        name: '2-2-1'
+                    }]
+                }, {
+                    name: "2-3",
+                    type: "tag"
+                }
+
+            ]
         }, {
             name: "3",
             children: [{
@@ -312,8 +354,14 @@
                     name: "4-1-1"
                 }, {
                     name: "4-1-2"
+                }, {
+                    name: 'asdasd',
+                    type: "tag"
                 }]
             }]
+        }, {
+            name: "5",
+            type: "tag"
         }]
     }];
     !(function(name, factory) {
@@ -328,58 +376,81 @@
         }
 
     })("jqOrgTree", function() {
-            var namespace = "jqOrgTree",
-                jqOrgTree = {},
-                classList = {
-
-                    isChild: "class='lineTop'"
-                },
-                //带有子节点的需要这条dom树
-                lineDom = "<div class='line'><div class='left top'></div><div class='right top'></div><div style='clear:both'></div></div>",
-                //左叶子树需要
-                leftDom = "<div class=leftWhite></div>",
-                rightDom = "<div class=rightWhite></div>",
-                template = function() {
-                    var ltemList = "";
-                    return itemList;
-
-                };
-
-
-            /**开始编码**/
-
-
-
-            jqOrgTree[namespace] = function() {
-
-            }
-
-
-
-            function buildNode(data) {
-                var str = "";
-                var template = function(data) {
-                        var s = "";
-                        $.each(data, function(index, item) {
-                                    s += `<div class="row"><div class="item">${item.name}${item.children?`<div class="ul">${template(item.children)}</div>`:''}</div></div>`;
-                        })
-
-                
-                return s;
-
+        var namespace = "jqOrgTree",
+            jqOrgTree = {},
+            //带有子节点的需要这条dom树
+            lineDom = "<div class='line'><div class='left top'></div><div class='right top'></div><div style='clear:both'></div></div>",
+            //左叶子树需要
+            lineTop = "<div class='lineTop'></div>",
+            leftDom = "<div class=leftWhite></div>",
+            rightDom = "<div class=rightWhite></div>",
+            template = function() {
+                var ltemList = "";
+                return itemList;
             };
-            
-           
-            
+        /**开始疯狂编码**/
+        jqOrgTree[namespace] = function() {};
+        var tagList = {};
 
-            return   template(data);
-           
+        function buildNode(data) {
+            var str = "";
+            var template = function(data, vip, root, path) {
+                $.each(data, function(index, item) {
+                    if (item.type == "tag") {
+
+                        tagList[path] = data.splice(index, 1)[0];
+
+                    }
+                })
+                var s = "",
+                    len = data.length,
+                    parent = path || "";
+
+                $.each(data, function(index, item) {
+                    if (item.type !== 'tag') {
+                        var path = "";
+                        if (!parent) {
+                            path = index;
+                        } else {
+                            path = parent + '-' + index;
+                        }
+                        //s += `<div class="item" data-path=${path}>${vip?rightDom:''}${index==0&&!root?leftDom:index==len-1?rightDom:''}${root?'':lineTop}<div class="content">${item.name+'<b style=color:red>'+path+'</b>'}</div>${item.children?`${lineDom}<div class="row">${template(item.children,item.children.length==1,false,parent+(parent&&"-")+index)}</div>`:''}</div>`;
+                        s += "<div class=\"item\" data-path=".concat(path, ">").concat(vip ? rightDom : '').concat(index == 0 && !root ? leftDom : index == len - 1 ? rightDom : '').concat(root ? '' : lineTop, "<div class=\"content\">").concat(item.name + '<b style=color:red>' + path + '</b>', "</div>").concat(item.children ? "".concat(lineDom, "<div class=\"row\">").concat(template(item.children, item.children.length == 1, false, parent + (parent && "-") + index), "</div>") : '', "</div>");
+                    }
+
+                })
+                return s;
+            };
+            return "<div class='row'>" + template(data, false, true) + "</div>";
         }
-        
-        document.getElementById('orgTree').innerHTML=buildNode(dataArray)
-
-        // console.log(buildNode(dataArray));
-
-
+        document.getElementById('orgTree').innerHTML = buildNode(dataArray);
+        /**局部处理tag标记**/
+        $.each(tagList, function(path, value) {
+            // console.log(path, value);
+            var vnode = $(".item[data-path='" + path + "']");
+            var child = vnode.children(".line").css({
+                position: "relative"
+            });
+            var cWidth = child.width() / 2;
+            var tag = $("<div class='tag' style='position:absolute;'>tag</div>");
+            child.append(tag);
+            var tag_height = child.children(".tag").outerHeight();
+            var tag_width = child.children(".tag").outerWidth();
+            child.children(".tag").css({
+                    marginTop: "-" + tag_height / 2 + "px",
+                    right: 0
+                })
+                // console.log(tag_height)
+            child.css({
+                height: child.height() + tag_height + 60 + "px"
+            });
+            var lineWidth = cWidth - tag_width;
+            console.log(lineWidth);
+            child.append("<div style='height:4px;width:" + lineWidth + "px;background:red;position:absolute;top:50%;right:" + tag_width + "px'></div>")
+                // $(".item[data-path='"+path+"']").css({
+                //     paddingRight:"100px"
+                // })
+                // $(".item[data-path='"+path+"']").css({height:child.height+100+"px"})
+        })
     })
 </script>
