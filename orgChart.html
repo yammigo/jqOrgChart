@@ -7,32 +7,29 @@
     <title>Document</title>
     <script src=https://dss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/jquery/jquery-1.10.2.min_65682a2.js></script>
     <style>
-        #tree_dom {
-            position: absolute;
-        }
-        
-        .row {
+        .orgTree .row {
             zoom: 1;
         }
         
-        .row::after {
+        .orgTree .row::after {
             content: " ";
             display: block;
             clear: both;
         }
         
-        .item {
+        .orgTree .item {
             display: table-cell;
             /* padding: 0px 10px; */
             position: relative;
+            text-align: center;
         }
         
-        .line {
+        .orgTree .line {
             margin: auto;
             height: 20px;
         }
         
-        .line .left {
+        .orgTree .line .left {
             width: 50%;
             height: 100%;
             float: left;
@@ -41,7 +38,7 @@
             border-bottom: solid 4px red;
         }
         
-        .line .right {
+        .orgTree .line .right {
             width: 50%;
             height: 100%;
             float: left;
@@ -50,11 +47,11 @@
             border-bottom: solid 4px red;
         }
         
-        .row .item:first-child {
+        .orgTree .row .item:first-child {
             margin-left: 0px;
         }
         
-        .content {
+        .orgTree .content {
             text-align: center;
             /* background: #eee; */
             margin: auto;
@@ -64,21 +61,22 @@
             white-space: normal;
         }
         
-        .content>.template {
-            width: 120px;
+        .orgTree .content>.template {
+            width: 100px;
             margin: auto;
             background: #eee;
             padding: 10px;
+            border-radius: 4px;
         }
         
-        .lineTop {
+        .orgTree .lineTop {
             width: 4px;
             height: 20px;
             background-color: red;
             margin: auto;
         }
         
-        .leftWhite {
+        .orgTree .leftWhite {
             width: 50%;
             height: 4px;
             background-color: #fff;
@@ -89,7 +87,7 @@
             left: 0px;
         }
         
-        .rightWhite {
+        .orgTree .rightWhite {
             width: 50%;
             height: 4px;
             background-color: #fff;
@@ -99,24 +97,25 @@
             margin-right: -2px;
             right: 0px;
         }
-        
-        .tag {
+        /* .tag {
             padding: 10px;
             background-color: #eee;
             border-radius: 4px;
             top: 50%;
             width: 120px;
             height: 60px;
-        }
+        } */
         
-        .tagBox {
+        .orgTree .tagBox {
             overflow: hidden;
-            width: 560px;
-            height: 50px;
+            min-height: 50px;
+            box-sizing: border-box;
+            /* width: 560px*/
+            /* height: 50px; */
             /* background-color: rgb(248, 223, 170); */
         }
         
-        .tagBox>div {
+        .orgTree .tagBox>div {
             float: left;
             width: 50%;
             height: 100%;
@@ -124,26 +123,35 @@
             border-bottom: solid 4px red;
         }
         
-        .tagBox div.tagLeft {
+        .orgTree .tagBox div.tagLeft {
             border-right: solid 2px red;
             position: relative;
         }
         
-        .tagBox div.tagLeft .noneLine {
+        .orgTree .tagBox div.tagLeft .noneLine {
             position: absolute;
             border-bottom: solid 4px #fff;
             left: 0px;
             bottom: -4px;
             height: 0px;
-            width: 50%;
+            /* width: 50%; */
         }
         
-        .tagBox div.tagRight {
+        .orgTree .tagBox div.tagRight {
             border-left: solid 2px red;
             position: relative;
         }
         
-        .tagBox div.tagRight .noneLine {
+        .orgTree .tagBox div.tagRight>.line {
+            width: 50px;
+            height: 0px;
+            top: 50%;
+            margin-top: -2px;
+            border-bottom: solid 4px red;
+            position: absolute;
+        }
+        
+        .orgTree .tagBox div.tagRight .noneLine {
             position: absolute;
             border-bottom: solid 4px #fff;
             right: 0px;
@@ -152,8 +160,22 @@
             width: 50%;
         }
         
-        .tagBox div.tagRight .tagItem {
-            width: 140px;
+        .orgTree .tagContent {
+            position: absolute;
+            top: 50%;
+            left: 50px;
+            padding: 10px;
+            height: 60px;
+            margin-top: -40px;
+            width: 120px;
+            text-align: center;
+            background: orangered;
+            border-radius: 4px;
+            color: #fff;
+        }
+        
+        .orgTree .tagBox div.tagRight .tagItem {
+            width: 120px;
             height: 40px;
             background-color: green;
             position: absolute;
@@ -165,206 +187,31 @@
             text-align: center;
             line-height: 40px;
         }
+        
+        .orgTree .expandIcon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            color: #fff;
+            font-size: 100%;
+            line-height: 20px;
+            text-align: center;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .orgTree .template {
+            border: solid 1px transparent;
+        }
     </style>
 </head>
 
 <body>
-
-    <div id="tree_dom">
-        <div class="row">
-            <div class="item">
-                <div class="content">
-                    这是内容1
-                </div>
-                <!-- <div class="lineTop"></div> -->
-                <div class="line">
-                    <div class="left top">
-                    </div>
-                    <div class="right top">
-                    </div>
-                    <div style="clear: both;"></div>
-                </div>
-                <div class="row">
-                    <div class="item">
-                        <div class="leftWhite"></div>
-                        <div class="lineTop">
-                        </div>
-                        <div class="content">
-                            这是内容1-1
-                        </div>
-                        <div class="tagBox">
-                            <div class="tagLeft"></div>
-                            <div class="tagRight">
-                                <div class="tagItem">tag节点</div>
-                                <div class="noneLine"></div>
-                            </div>
-                        </div>
-                        <div class="line" style="display:none">
-                            <div class="left top">
-                            </div>
-                            <div class="right top">
-                            </div>
-                            <div style="clear: both;"></div>
-                        </div>
-
-                        <div class="row">
-                            <div class="item">
-                                <div class="leftWhite"></div>
-                                <div class="lineTop">
-                                </div>
-                                <div class="content">
-                                    这是内容1-1-1
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="lineTop">
-
-                                </div>
-                                <div class="content">
-                                    这是内容1-1-2
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="rightWhite"></div>
-                                <div class="lineTop">
-
-                                </div>
-                                <div class="content">
-                                    这是内容1-1-3
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="lineTop">
-
-                        </div>
-                        <div class="content">
-                            这是内容1-2
-                        </div>
-                        <div class="line">
-                            <div class="left top">
-
-                            </div>
-                            <div class="right top">
-
-                            </div>
-                            <div style="clear: both;"></div>
-                        </div>
-                        <div class="row">
-                            <div class="item">
-                                <div class="leftWhite"></div>
-                                <div class="lineTop">
-
-                                </div>
-                                <div class="content">
-                                    这是内容1-2-1
-                                </div>
-                            </div>
-                            <!-- <div class="item">
-                                <div class="lineTop">
-
-                                </div>
-                                <div class="content">
-                                    这是内容1-2-2
-                                </div>
-                            </div> -->
-                            <div class="item">
-
-                                <div class="lineTop">
-
-                                </div>
-                                <div class="content">
-                                    这是内容1-2-3
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="rightWhite"></div>
-
-                                <div class="lineTop">
-
-                                </div>
-                                <div class="content">
-                                    这是内容1-2-4
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item tags">
-                        <div class="rightWhite"></div>
-                        <div class="lineTop">
-                        </div>
-                        <div class="content">
-                            tags标签内容
-                        </div>
-                        <div class="tagBox" style="width:380px;">
-                            <div class="tagLeft"></div>
-                            <div class="tagRight">
-                                <div>这是一个tag节点</div>
-                                <div class="noneLine"></div>
-                            </div>
-                        </div>
-                        <div class="line" style="display:none">
-                            <div class="left top">
-                            </div>
-                            <div class="right top">
-                            </div>
-                            <div style="clear: both;"></div>
-                        </div>
-                        <div class="row">
-                            <div class="item">
-                                <div class="rightWhite"></div>
-                                <div class="leftWhite"></div>
-                                <div class="lineTop"></div>
-                                <div class="content">
-                                    tags子标签内容
-                                </div>
-                                <div class="tagBox" style="width:360px;">
-                                    <div class="tagLeft"></div>
-                                    <div class="tagRight">
-                                        <div>这是一个tag节点</div>
-                                        <div class="noneLine"></div>
-                                    </div>
-                                </div>
-                                <div class="line" style="display:none;">
-                                    <div class="left top">
-                                    </div>
-                                    <div class="right top">
-                                    </div>
-                                    <div style="clear: both;"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="item">
-                                        <div class="leftWhite"></div>
-                                        <div class="lineTop"></div>
-                                        <div class="content">
-                                            内容
-                                        </div>
-                                    </div>
-
-
-                                    <div class="item">
-                                        <div class="rightWhite"></div>
-                                        <div class="lineTop"></div>
-                                        <div class="content">
-                                            内容
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-    <div id="orgTree" style="position:absolute;top:600px;left: 50%;
+    <div id="orgTree" class="orgTree" style="position:absolute;top:600px;left: 50%;
     margin-left: -40%;">
-
     </div>
-
 </body>
 
 </html>
@@ -376,31 +223,71 @@
             children: [{
                 name: "1-1",
             }, {
-                name: "1-2"
+                name: "1-2",
+                children: [{
+                    name: 'asda',
+                    children: [{
+                        name: 'asdasd'
+                    }, {
+                        name: 'asdad',
+                        type: 'tag'
+                    }, {
+                        name: 'asda',
+                        children: [{
+                            name: 'asdasd'
+                        }, {
+                            name: 'asdad',
+                            type: 'tag'
+                        }]
+                    }]
+                }]
+            }, {
+                name: "1-5",
+                type: "tag"
             }, {
                 name: "1-3",
             }, {
                 name: "1-4",
+                children: [{
+                    name: 'asda'
+                }, {
+                    name: 'asdas'
+                }]
+            }, {
+                name: "1-5",
             }, ]
         }, {
             name: "2",
-            children: [
+            children: [{
+                    name: 'asdad',
+                    type: 'tag'
+                },
 
                 {
                     name: "2-1",
                     children: [{
-                        name: "2-1-1"
+                        name: 'asd',
+                        type: 'tag'
+                    }, {
+                        name: 'fan',
+                    }, {
+                        name: "2-1-1",
+
+                        children: [{
+                            name: "2-1-1-0",
+
+                        }]
                     }]
                 }, {
                     name: "2-2",
                     children: [{
-                        name: '2-2-1'
+                        name: '2-2-1',
+                    }, {
+                        name: "2-2-2",
+                        type: 'tag'
                     }]
                 }, {
                     name: "2-4"
-                }, {
-                    name: 'asdad',
-                    type: 'tag'
                 }
             ]
         }, {
@@ -415,27 +302,51 @@
             }]
         }, {
             name: "4",
-            children: [
+            children: [{
+                    name: '测试',
+                    type: 'tag'
+                },
 
                 {
                     name: "4-1",
                     children: [{
+                        name: 'tag',
+                        type: 'tag'
+                    }, {
                         name: "4-1-1"
                     }, {
                         name: "4-1-2"
                     }]
                 }, {
-                    name: "4-2",
-
-                }, {
-                    name: 'asdas',
-                    type: 'tag'
+                    name: "4-2"
                 }
             ]
         }, {
-            name: 'asdad',
-            type: 'tag'
-
+            name: "5",
+            children: [{
+                name: "5-1",
+                children: [{
+                    name: "5-1-1",
+                    children: [{
+                        name: "5-1-1-1",
+                        children: [{
+                            name: 'adasd'
+                        }, {
+                            name: 'zui',
+                            type: 'tag'
+                        }]
+                    }, {
+                        name: 'zda',
+                        type: 'tag'
+                    }]
+                }, {
+                    name: 'z',
+                    type: 'tag'
+                }]
+            }]
+        }, {
+            name: "6",
+            type: "tag"
         }]
     }];
     !(function(name, factory) {
@@ -450,104 +361,243 @@
         }
 
     })("jqOrgTree", function() {
-        var namespace = "jqOrgTree",
-            jqOrgTree = {},
-            //带有子节点的需要这条dom树
-            lineDom = "<div class='line'><div class='left top'></div><div class='right top'></div><div style='clear:both'></div></div>",
-            //左叶子树需要
-            lineTop = "<div class='lineTop'></div>",
-            leftDom = "<div class=leftWhite></div>",
-            rightDom = "<div class=rightWhite></div>",
+            /**模板区域**/
+            var namespace = "jqOrgTree",
+                jqOrgTree = {},
+                dropDom = "", //当前正在拖动的dom
+                //带有子节点的需要这条dom树
+                lineDom = "<div class='line'><div class='left top'></div><div class='right top'></div><div style='clear:both'></div></div>",
+                //左叶子树需要
+                lineTop = "<div class='lineTop'></div>",
+                leftDom = "<div class=leftWhite></div>",
+                rightDom = "<div class=rightWhite></div>",
+                tagBox = function() {
+                    // console.log(arguments)
+                    return '<div class="tagBox"><div class="tagLeft"><div class="noneLine"></div></div><div class="tagRight"><div class="line"></div><div class="tagContent">' + arguments[1] + '</div><div class="noneLine"></div></div></div>'
+                },
+                expandBox = "<div class='expandIcon' title='折叠'>-</div>";
             template = function() {
                 var ltemList = "";
                 return itemList;
             };
-        /**开始疯狂编码**/
-        jqOrgTree[namespace] = function() {};
-        var tagList = {};
+            /**开始疯狂编码----------------------------------------------------------------------------------------------------------------**/
+            jqOrgTree[namespace] = function() {};
+            // var tagList = {};
+            function buildNode(data) {
+                var str = "";
+                var template = function(data, vip, root, path, tag_index, zType) {
+                        // $.each(data, function(index, item) {
+                        //     if (item && item.hasOwnProperty("type") && item.type == "tag") {
+                        //         tagList[path] = data.splice(index, 1)[0];
+                        //         tagList[path].path = path + "-" + index;
+                        //     }
+                        // })
+                        // console.log(path)
+                        var s = "",
+                            len = data.length,
+                            parent = path || "";
+                        $.each(data, function(index, item) {
 
-        function buildNode(data) {
-            var str = "";
-            var template = function(data, vip, root, path) {
-                $.each(data, function(index, item) {
-                    if (item && item.hasOwnProperty("type") && item.type == "tag") {
-                        tagList[path] = data.splice(index, 1)[0];
-                        tagList[path].path = path + "-" + index;
-                    }
-                })
-                var s = "",
-                    len = data.length,
-                    parent = path || "";
-                $.each(data, function(index, item) {
+                                    var path = "",
+                                        tag = "";
+                                    zr = ""
+                                    tagIndex = 0;
+                                    if (!parent) {
+                                        path = index;
+                                    } else {
+                                        path = parent + '-' + index;
+                                    }
+                                    /* 处理tag标记*/
+                                    item.children && $.each(item.children, function(index, item1) {
+                                        if (item1.type && item1.type == "tag") {
+                                            tag = tagBox(item1, path + '-' + index);
+                                            if (item.children.length > 1 && index == 0) {
+                                                tagIndex = 1;
+                                                zr = "left";
+                                            } else {
+                                                (item.children.length - 1 == index) && (tagIndex = item.children.length - 2, zr = "right")
+                                            }
+                                        }
+                                    })
 
-                    var path = "";
-                    if (!parent) {
-                        path = index;
-                    } else {
-                        path = parent + '-' + index;
-                    }
-                    //s += `<div class="item" data-path=${path}>${vip?rightDom:''}${index==0&&!root?leftDom:index==len-1?rightDom:''}${root?'':lineTop}<div class="content"><div class="template">${item.name+'<b style=color:red>'+path+'</b>'}</div></div>${item.children?`${lineDom}<div class="row">${template(item.children,item.children.length==1,false,parent+(parent&&"-")+index)}</div>`:''}</div>`;
-                    s += "<div class=\"item\" data-path=".concat(path, ">").concat(vip ? rightDom : '').concat(index == 0 && !root ? leftDom : index == len - 1 ? rightDom : '').concat(root ? '' : lineTop, "<div class=\"content\"><div class=\"template\">").concat(item.name + '<b style=color:red>' + path + '</b>', "</div></div>").concat(item.children ? "".concat(lineDom, "<div class=\"row\">").concat(template(item.children, item.children.length == 1, false, parent + (parent && "-") + index), "</div>") : '', "</div>");
+                                    if (item.type && item.type == "tag") return;
+                                    //s += "<div class=\"item\" data-z=\"".concat(zType, "\" data-path=").concat(path, ">").concat(vip ? rightDom : '').concat(index == 0 && !root || index == tag_index && zType == 'left' ? leftDom : index == len - 1 || index == tag_index && zType == 'right' ? rightDom : '').concat(root ? '' : lineTop, "<div class=\"content\"><div class=\"template\" draggable=\"true\">").concat(item.name + '<b style=color:red>' + path + '</b>', "</div></div>").concat(item.children && expandBox || "").concat(tag).concat(item.children ? "".concat(tag == "" ? lineDom : "", "<div class=\"row\">").concat(template(item.children, item.children.length == 1, false, parent + (parent && "-") + index, tagIndex, zr), "</div>") : '', "</div>");
+                                    s += `<div class="item" data-z="${zType}" data-path=${path}>${vip?rightDom:''}${(index==0&&!root||(index==tag_index&&zType=='left'))?leftDom:(index==len-1||(index==tag_index&&zType=='right'))?rightDom:''}${root?'':lineTop}<div class="content"><div class="template" draggable="true">${item.name+'<b style=color:red>'+path+'</b>'}</div></div>${item.children&&expandBox||""}${tag}${item.children?`${tag==""?lineDom:""}<div class="row">${template(item.children,item.children.length==1,false,parent+(parent&&"-")+index,tagIndex,zr)}</div>`:''}</div>`;
+                                    //s += `<div class="item" data-path=${path}>${vip?rightDom:''}${index==0&&!root?leftDom:index==len-1?rightDom:''}${root?'':lineTop}<div class="content"><div class="template">${item.name+'<b style=color:red>'+path+'</b>'}</div></div>${tag}${item.children?`${lineDom}<div class="row">${template(item.children,item.children.length==1,false,parent+(parent&&"-")+index)}</div>`:''}</div>`;
+                                    // s += "<div class=\"item\" data-path=".concat(path, ">").concat(vip ? rightDom : '').concat(index == 0 && !root ? leftDom : index == len - 1 ? rightDom : '').concat(root ? '' : lineTop, "<div class=\"content\"><div class=\"template\">").concat(item.name + '<b style=color:red>' + path + '</b>', "</div></div>").concat(item.children ? "".concat(lineDom, "<div class=\"row\">").concat(template(item.children, item.children.length == 1, false, parent + (parent && "-") + index), "</div>") : '', "</div>");
                 })
                 return s;
             };
             return "<div class='row'>" + template(data, false, true) + "</div>";
         }
-        document.getElementById('orgTree').innerHTML = buildNode(dataArray);
         /**局部处理tag标记**/
         function reverseObject(object) {
             /**反转对象**/
             var newObject = {};
             var keys = [];
-
             for (var key in object) {
                 keys.push(key);
             }
-
             for (var i = keys.length - 1; i >= 0; i--) {
                 var value = object[keys[i]];
                 newObject[keys[i]] = value;
             }
-
             return newObject;
         }
-        // $.each(reverseObject(tagList), function(path, value) {
-        //     var vnode = $(".item[data-path='" + path + "']");
-        //     var tagWidth = 0;
-        //     var tagHeight = 0;
-        //     var row = vnode.children(".row");
-        //     var rowWidth = row.width();
-        //     var tagContent = $("<div class='tagContent' style='padding:20px;text-align:center;border:solid 1px red;width:120px'>" + value.path + "</div>");
-        //     var tagBox = $('<div class="tagBox"><div class="tagLeft"><div class="noneLine"></div></div><div class="tagRight"><div class="noneLine"></div></div></div>');
-        //     vnode.children(".line").replaceWith(tagBox);
-        //     vnode.children(".tagBox").children(".tagRight").append(tagContent);
-        //     tagHeight = tagContent.outerHeight();
-        //     tagContent.css({
-        //         position: "absolute",
-        //         top: "50%",
-        //         marginTop: -tagHeight / 2 + "px",
-        //         right: 0
-        //     })
-        //     tagWidth = tagContent.outerWidth();
-        //     tagBox.css({
-        //         height: tagHeight + 60 + "px",
-        //         width: rowWidth + tagWidth - 2 + "px"
-        //     })
-        //     tagBox.children(".tagLeft").css({
-        //         [row.children('.item').length == 1 && 'border-bottom']: "none"
-        //     }).children(".noneLine").css({
-        //         width: Math.floor(row.children('.item').eq(0).children('.leftWhite').width() / (tagBox.width() / 2) * 100) + "%",
 
-        //     })
-        //     tagBox.children(".tagRight").css({
-        //         [row.children('.item').length == 1 && 'border-bottom']: "none"
-        //     }).children(".noneLine").css({
-        //         width: Math.floor(row.children('.item').last().children('.rightWhite').width() / (tagBox.width() / 2) * 100) + "%",
-        //     })
-        //     row.css({
-        //         paddingLeft: row.children(".item").length > 1 && (tagWidth) / 2 - 1 + "px"
-        //     })
+        function renderLayout() {
+            //待处理偏移量的元素;
+            var walkList = [];
+            //1.先处理宽度问题
+            $("#orgTree .tagBox").each(function(index, item) {
+                var tagWidth = 170;
+                var tagBox = $(item);
+                var tagBoxwidth = $(item).outerWidth();
+                var row = tagBox.siblings('.row');
+                var parentItem = tagBox.parent().parent();
+                // console.log(parentItem)
+                tagBox.css({
+                        height: tagBox.find(".tagContent").outerHeight() + 60 + "px",
+                    })
+                    //  console.log(row,row.outerWidth());
+                if (tagBoxwidth / 2 > 170) {
+                    tagBox.find("div").find('.noneLine').remove();
+                    row.children('.item').length == 1 && tagBox.children('div').css({
+                        'borderBottom': 'none'
+                    });
+                    return
+                }
+                if (row.children(".item").length == 1) {
+                    row.children(".item").eq(0).children(".lineTop,.leftWhite,.rightWhite").remove();
+                    // tagBox.find("div").find('.noneLine').remove();
+                } else {
 
-        // })
+                }
+                tagBox.css({
+                    width: tagBoxwidth + 170 * 2 + "px",
+                });
+                //把暂存区元素注入队列，后续处理
+                walkList.push({
+                    tag: tagBox,
+                    row: row, //row 元素
+                    items: row.children(".item") //子元素,
+                });
+
+                // row.css({ 
+                //     [row.children('.item').length<=1&&(row.children('.item').children('.row').length>0&&row.children('.item').children('.tagBox').length>=0)?'':'paddingLeft']: tagWidth + 'px'
+                // });
+                //  row.children(".item").length>1&&console.log(1-row.children('.item').first().width()/($(item).width()/2),row.children('.item').last().width())
+
+            })
+            $.each(walkList, function(index, item) {
+                console.log(item)
+
+                function sumWidth(arr) {
+                    var s = 0;
+                    for (var i = arr.length - 1; i >= 0; i--) {
+                        s += $(arr[i]).outerWidth();
+                    }
+                    return s;
+                }
+                var diff = item.row.outerWidth() - (sumWidth(item.items)) * item.items.length;
+                if (diff > 0) {
+                    item.row.css({
+                        'paddingLeft': 170 + "px"
+                    });
+                    item.tag.find('.noneLine').eq(0).css({
+                        width: item.tag.find('.tagLeft').outerWidth() - item.items.eq(0).outerWidth()
+                    })
+                    item.tag.find('.noneLine').eq(1).css({
+                        width: item.tag.find('.tagLeft').outerWidth() - item.items.eq(item.items.length - 1).outerWidth()
+                    })
+
+                } else {
+                    item.tag.find('.noneLine').remove();
+                }
+
+                item.items.length == 1 && item.tag.children('div').css({
+                    'borderBottom': 'none'
+                });
+
+            })
+            walkList = null;
+        }
+
+        function initEvent() {
+            $(document.body).on('click', "div.expandIcon", function() {
+                var parent = $(this).parent();
+                if (parent.hasClass("expand")) {
+                    parent.removeClass("expand");
+                    $(this).nextAll().css({
+                        visibility: ''
+                    }).end().text("-").attr("title", "折叠");
+                } else {
+                    parent.addClass("expand");
+                    $(this).nextAll().css({
+                        visibility: 'hidden'
+                    }).end().text("+").attr('title', "展开");
+                }
+            });
+            $("#orgTree").on('dragstart', '.template', function(e) {
+                dropDom = $(this);
+                dropDom && $("#orgTree .template").not(dropDom && dropDom.parent().parent().find(".template")).css({
+                    border: "dashed 1px black"
+                });
+            });
+            $("#orgTree").on('dragover', ".template", function(e) {
+                e.preventDefault();
+                if ($(this)[0] !== dropDom[0]) {
+                    $(this).not(dropDom.parent().parent().find(".template")).css({
+                        border: "dashed 1px red"
+                    })
+                }
+            });
+            $("#orgTree").on('dragleave', ".template", function(e) {
+                dropDom && $("#orgTree .template").not(dropDom && dropDom.parent().parent().find(".template")).css({
+                    border: "dashed 1px black"
+                });
+            });
+            $("#orgTree").on('drop', '.template', function(e) {
+                event.preventDefault();
+                var to = $(this).parent().parent()[0],
+                    form = dropDom.parent().parent()[0];
+                if ($.contains(form, to) || dropDom[0] == $(this)[0]) {
+                    //  console.log('不能执行自己的拖拽逻辑')
+                } else {
+                    walkData($(to).attr('data-path'), $(form).attr("data-path"));
+                }
+            })
+            $("#orgTree").on('dragend', function(e) {
+                $("#orgTree .template").css({
+                    border: ""
+                });
+            })
+        }
+        /**拖拽节点后处理布局**/
+        function walkData(toPath, formPath) {
+            var formPatharrray = formPath.split("-");
+            var toData = new Function("return dataArray" + "[" + toPath.split("-").join("].children[") + "]")();
+            var formData = new Function("return dataArray" + "[" + formPath.split("-").join("].children[") + "]")();
+            var popIndex = formPatharrray.pop();
+            var formParent = new Function("return dataArray" + "[" + formPatharrray.join("].children[") + "]")();
+            // console.log(toData,formData)
+            if (toData.children) {
+                toData.children.push(formData);
+                formParent.children.splice(popIndex, 1);
+            } else {
+                toData.children = [formData];
+                formParent.children.splice(popIndex, 1);
+            }
+            formParent.children.length == 0 && (formParent.children = "")
+            $("#orgTree").html(buildNode(dataArray)); // 注册dom
+            renderLayout(); // 渲染布局
+        }
+
+        function init() {
+            $("#orgTree").html(buildNode(dataArray)); // 注册dom
+            renderLayout(); // 渲染布局
+            initEvent(); // 注册事件  
+        }
+        init();
     })
 </script>

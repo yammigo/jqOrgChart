@@ -59,7 +59,6 @@
 
             // Drag stop event handler for nodes
             $('div.node').bind("dragstop", function handleDragStop(event, ui) {
-
                 /* reload the plugin */
                 $(opts.chartElement).children().remove();
                 $this.jOrgChart(opts);
@@ -67,11 +66,9 @@
 
             // Drop event handler for nodes
             $('div.node').bind("drop", function handleDropEvent(event, ui) {
-
                 var targetID = $(this).data("tree-node");
                 var targetLi = $this.find("li").filter(function() { return $(this).data("tree-node") === targetID; });
                 var targetUl = targetLi.children('ul');
-
                 var sourceID = ui.draggable.data("tree-node");
                 var sourceLi = $this.find("li").filter(function() { return $(this).data("tree-node") === sourceID; });
                 var sourceUl = sourceLi.parent('ul');
