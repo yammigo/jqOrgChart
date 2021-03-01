@@ -6,27 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src=https://dss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/jquery/jquery-1.10.2.min_65682a2.js></script>
-    <!-- <style>
-        .OkrTree .row {
-            zoom: 1;
+    <style>
+        /* .OkrTree .row {
+            zoom: 1
         }
         
         .OkrTree .row::after {
             content: " ";
             display: block;
-            clear: both;
+            clear: both
         }
         
         .OkrTree .item {
             display: table-cell;
-            /* padding: 0px 10px; */
             position: relative;
             text-align: center;
+            vertical-align: top;
         }
         
         .OkrTree .line {
             margin: auto;
-            height: 20px;
+            height: 20px
         }
         
         .OkrTree .line .left {
@@ -34,8 +34,7 @@
             height: 100%;
             float: left;
             box-sizing: border-box;
-            border-right: solid 1px red;
-            border-bottom: solid 2px red;
+            border-right: solid 1px ${opts.css.lineColor};
         }
         
         .OkrTree .line .right {
@@ -43,71 +42,66 @@
             height: 100%;
             float: left;
             box-sizing: border-box;
-            border-left: solid 1px red;
-            border-bottom: solid 2px red;
+            border-left: solid 1px ${opts.css.lineColor};
         }
         
         .OkrTree .row .item:first-child {
-            margin-left: 0px;
+            margin-left: 0
         }
         
         .OkrTree .content {
             text-align: center;
-            /* background: #eee; */
             margin: auto;
             box-sizing: border-box;
-            padding: 0px 10px;
+            padding: 0 10px;
             border-radius: 4px;
-            white-space: normal;
+            white-space: normal
         }
         
         .OkrTree .content>.template {
-            width: 200px;
+            width: auto;
             margin: auto;
-            background: #eee;
-            padding: 10px;
+            display: inline-block;
             border-radius: 4px;
             word-break: break-all;
-            white-space: pre-wrap;
+            white-space: pre-wrap
         }
         
         .OkrTree .lineTop {
-            width: 0px;
-            border: solid 1px red;
             height: 20px;
-            background-color: red;
             margin: auto;
+            position: relative;
         }
         
-        .OkrTree .leftWhite {
+        .OkrTree .lineTop>.line-left {
             width: 50%;
-            height: 2px;
-            /* border-top: solid 2px #fff; */
-            background-color: #fff;
-            margin-top: -2px;
             position: absolute;
-            z-index: 1;
-            margin-left: -1px;
-            left: 0px;
+            box-sizing: border-box;
+            height: 100%;
+            border-right: solid 1px ${opts.css.lineColor};
         }
         
-        .OkrTree .rightWhite {
-            width: 50%;
-            /* height: 2px; */
-            height: 2px;
-            /* border-top: solid 2px #fff; */
-            background-color: #fff;
-            margin-top: -2px;
+        .OkrTree .lineTop>.line-left.top {
+            border-top: solid 2px ${opts.css.lineColor};
+        }
+        
+        .OkrTree .lineTop>.line-right.top {
+            border-top: solid 2px ${opts.css.lineColor};
+        }
+        
+        .OkrTree .lineTop>.line-right {
             position: absolute;
-            z-index: 1;
-            margin-right: -1px;
-            right: 0px;
+            left: 50%;
+            box-sizing: border-box;
+            width: 50%;
+            border-left: solid 1px ${opts.css.lineColor};
+            height: 100%;
         }
         
         .OkrTree .tagBox {
             overflow: hidden;
             min-height: 50px;
-            box-sizing: border-box;
+            box-sizing: border-box
         }
         
         .OkrTree .tagBox>div {
@@ -115,90 +109,76 @@
             width: 50%;
             height: 100%;
             box-sizing: border-box;
-            border-bottom: solid 2px red;
         }
         
         .OkrTree .tagBox div.tagLeft {
-            border-right: solid 1px red;
-            position: relative;
+            border-right: solid 1px ${opts.css.lineColor};
+            position: relative
         }
         
-        .OkrTree .tagBox div.tagLeft .noneLine {
+        .OkrTree .tagBox>.tagDownLine {
+            width: 0px;
+            border-right: 2px solid ${opts.css.lineColor};
             position: absolute;
-            border-bottom: solid 2px #fff;
-            left: 0px;
-            bottom: -2px;
-            height: 0px;
+            left: 50%;
+            margin-left: -1px;
+            height: 50%
         }
         
         .OkrTree .tagBox div.tagRight {
-            border-left: solid 1px red;
-            position: relative;
+            border-left: solid 1px ${opts.css.lineColor};
+            position: relative
         }
         
         .OkrTree .tagBox div.tagRight>.line {
             width: 50px;
-            height: 0px;
+            height: 0;
             top: 50%;
             margin-top: -1px;
-            border-bottom: solid 2px red;
-            position: absolute;
-        }
-        
-        .OkrTree .tagBox div.tagRight .noneLine {
-            position: absolute;
-            border-bottom: solid 2px #fff;
-            right: 0px;
-            bottom: -2px;
-            height: 0px;
-            width: 50%;
+            border-bottom: solid 2px ${opts.css.lineColor};
+            position: absolute
         }
         
         .OkrTree .tagContent {
             position: absolute;
             top: 50%;
             left: 50px;
-            padding: 10px;
-            height: 60px;
-            margin-top: -40px;
-            width: 120px;
+            width: auto;
             text-align: center;
-            background: orangered;
             border-radius: 4px;
-            color: #fff;
         }
         
         .OkrTree .tagBox div.tagRight .tagItem {
             height: 40px;
             background-color: green;
             position: absolute;
-            right: 0px;
+            right: 0;
             top: 50%;
             margin-top: -20px;
             border-radius: 2px;
             color: #fff;
             text-align: center;
-            line-height: 40px;
+            line-height: 40px
         }
         
         .OkrTree .expandIcon {
             display: inline-block;
             width: 20px;
             height: 20px;
-            background-color: red;
+            background-color: ${opts.css.lineColor};
             color: #fff;
             font-size: 100%;
             line-height: 20px;
             text-align: center;
             border-radius: 50%;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: bold
         }
         
         .OkrTree .template {
             border: solid 1px transparent;
-        }
-    </style> -->
+        } */
+    </style>
 </head>
 
 <body style="text-align:center;">

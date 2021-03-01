@@ -1,3 +1,9 @@
+/**
+ * version:0.1
+ * 2020/12/18 
+ * author:fanjiantao (abbe)
+ */
+
 !(function(name, factory) {
     try {
         if ($) {}
@@ -14,65 +20,65 @@
     }
 
 })("OkrTree", function() {
-        /**模板区域**/
-        var namespace = "OkrTree",
-            dataArray = [],
-            tagCalback = null,
-            itemCallback = null,
-            isdrop = true,
-            dropDom = "", //当前正在拖动的dom
-            //带有子节点的需要这条dom树
-            lineDom = "<div class='line'><div class='left top'></div><div class='right top'></div><div style='clear:both'></div></div>",
-            //左叶子树需要
-            lineTop = "<div class='lineTop'></div>",
-            leftDom = "<div class=leftWhite></div>",
-            rightDom = "<div class=rightWhite></div>",
-            tagBox = function(data, path, last) {
-                // console.log(last)
-                return '<div class="tagBox" style="position:relative">' + (last ? '<div class="tagDownLine"></div>' : '') + '<div class="tagLeft" ' + (last && 'style="border:none"') + ' ><div class="noneLine"></div></div><div class="tagRight" ' + (last && 'style="border:none"') + ' ><div class="line"></div><div class="tagContent">' + (tagCalback && tagCalback(data)) + '</div><div class="noneLine"></div></div></div>'
-            },
-            expandBox = "<div class='expandIcon' title='折叠'>-</div>",
-            itemTemplate = function(data) {
-                if (itemCallback) { return itemCallback(data) };
-                return ""
-            };
-        /**core code----------------------------------------------------------------------------------------------------------------**/
-        function buildNode(data) {
+    /**模板区域**/
+    var namespace = "OkrTree",
+        dataArray = [],
+        tagCalback = null,
+        itemCallback = null,
+        isdrop = true,
+        dropDom = "", //当前正在拖动的dom
+        //带有子节点的需要这条dom树
+        lineDom = "<div class='line'><div class='left top'></div><div class='right top'></div><div style='clear:both'></div></div>",
+        //左叶子树需要
+        lineTop = "<div class='lineTop'></div>",
+        leftDom = "<div class=leftWhite></div>",
+        rightDom = "<div class=rightWhite></div>",
+        tagBox = function(data, path, last) {
+            // console.log(last)
+            return '<div class="tagBox" style="position:relative">' + (last ? '<div class="tagDownLine"></div>' : '') + '<div class="tagLeft" ' + (last && 'style="border:none"') + ' ><div class="noneLine"></div></div><div class="tagRight" ' + (last && 'style="border:none"') + ' ><div class="line"></div><div class="tagContent">' + (tagCalback && tagCalback(data)) + '</div><div class="noneLine"></div></div></div>'
+        },
+        expandBox = "<div class='expandIcon' title='折叠'>-</div>",
+        itemTemplate = function(data) {
+            if (itemCallback) { return itemCallback(data) };
+            return ""
+        };
+    /**core code----------------------------------------------------------------------------------------------------------------**/
+    function buildNode(data) {
 
-            var template = function(data, vip, root, path, tag_index, zType) {
-                    var s = "",
-                        len = data.length,
-                        parent = path || "";
-                    $.each(data, function(index, item) {
+        var template = function(data, vip, root, path, tag_index, zType) {
+            var s = "",
+                len = data.length,
+                parent = path || "";
+            $.each(data, function(index, item) {
 
-                                var path = "",
-                                    tag = "",
-                                    zr = "",
-                                    lastTag = item.children instanceof Array && item.children.length == 1 && item.children[0].type == "tag";
-                                tagIndex = 0;
-                                if (!parent) {
-                                    path = index;
-                                } else {
-                                    path = parent + '-' + index;
-                                }
+                var path = "",
+                    tag = "",
+                    zr = "",
+                    lastTag = item.children instanceof Array && item.children.length == 1 && item.children[0].type == "tag";
+                tagIndex = 0;
+                if (!parent) {
+                    path = index;
+                } else {
+                    path = parent + '-' + index;
+                }
 
-                                /* 处理tag标记*/
-                                item.children && $.each(item.children, function(index, item1) {
+                /* 处理tag标记*/
+                item.children && $.each(item.children, function(index, item1) {
 
-                                    if (item1.type && item1.type == "tag") {
-                                        tag = tagBox(item1, path + '-' + index, lastTag);
-                                        if (item.children.length > 1 && index == 0) {
-                                            tagIndex = 1;
-                                            zr = "left";
-                                        } else {
-                                            (item.children.length - 1 == index) && (tagIndex = item.children.length - 2, zr = "right")
-                                        }
-                                    }
-                                })
+                    if (item1.type && item1.type == "tag") {
+                        tag = tagBox(item1, path + '-' + index, lastTag);
+                        if (item.children.length > 1 && index == 0) {
+                            tagIndex = 1;
+                            zr = "left";
+                        } else {
+                            (item.children.length - 1 == index) && (tagIndex = item.children.length - 2, zr = "right")
+                        }
+                    }
+                })
 
-                                if (item.type && item.type == "tag") return;
-                                //s += "<div class=\"item\" data-z=\"".concat(zType, "\" data-path=").concat(path, ">").concat(vip ? rightDom : '').concat(index == 0 && !root || index == tag_index && zType == 'left' ? leftDom : index == len - 1 || index == tag_index && zType == 'right' ? rightDom : '').concat(root ? '' : lineTop, "<div class=\"content\"><div class=\"template\" draggable=\"").concat(isdrop, "\">").concat(itemTemplate(item), "</div></div>").concat(item.children && expandBox || "").concat(tag).concat(item.children ? "".concat(tag == "" ? lineDom : "", "<div class=\"row\">").concat(template(item.children, item.children.length == 1, false, parent + (parent && "-") + index, tagIndex, zr), "</div>") : '', "</div>");
-                                s += `<div class="item" data-z="${zType}" data-path=${path}>${vip?rightDom:''}${(index==0&&!root||(index==tag_index&&zType=='left'))?leftDom:(index==len-1||(index==tag_index&&zType=='right'))?rightDom:''}${root?'':lineTop}<div class="content"><div class="template" draggable="${isdrop}">${itemTemplate(item)}</div></div>${item.children&&expandBox||""}${tag}${item.children?`${tag==""?lineDom:""}<div class="row">${template(item.children,item.children.length==1,false,parent+(parent&&"-")+index,tagIndex,zr)}</div>`:''}</div>`;               
+                if (item.type && item.type == "tag") return;
+                s += "<div class=\"item\" data-z=\"".concat(zType, "\" data-path=").concat(path, ">").concat(vip ? rightDom : '').concat(index == 0 && !root || index == tag_index && zType == 'left' ? leftDom : index == len - 1 || index == tag_index && zType == 'right' ? rightDom : '').concat(root ? '' : lineTop, "<div class=\"content\"><div class=\"template\" draggable=\"").concat(isdrop, "\">").concat(itemTemplate(item), "</div></div>").concat(item.children && item.children.length > 0 && expandBox || "").concat(tag).concat((item.children && item.children.length > 0) ? "".concat(tag == "" ? lineDom : "", "<div class=\"row\">").concat(template(item.children, item.children.length == 1, false, parent + (parent && "-") + index, tagIndex, zr), "</div>") : '', "</div>");
+                //s += `<div class="item" data-z="${zType}" data-path=${path}>${vip?rightDom:''}${(index==0&&!root||(index==tag_index&&zType=='left'))?leftDom:(index==len-1||(index==tag_index&&zType=='right'))?rightDom:''}${root?'':lineTop}<div class="content"><div class="template" draggable="${isdrop}">${itemTemplate(item)}</div></div>${item.children&&expandBox||""}${tag}${item.children?`${tag==""?lineDom:""}<div class="row">${template(item.children,item.children.length==1,false,parent+(parent&&"-")+index,tagIndex,zr)}</div>`:''}</div>`;               
             })
             return s;
         };
@@ -105,13 +111,13 @@
             var tagContent = tagBox.find(".tagContent");
             var contentHeight = tagContent.outerHeight();
             var contentWidth = tagContent.outerWidth();
-            // var parentItem = tagBox.parent().parent();
-            tagContent.css({
-                marginTop: -(contentHeight / 2) + "px"
-            })
             tagBox.css({
                 height: contentHeight + 60 + "px",
             })
+            tagContent.css({
+                marginTop: -(contentHeight / 2) + "px"
+            })
+
             if (tagBoxwidth / 2 > (contentWidth + 50)) {
                 tagBox.find("div").find('.noneLine').remove();
                 row.children('.item').length == 1 && tagBox.children('div').css({
@@ -122,9 +128,16 @@
             if (row.children(".item").length == 1) {
                 row.children(".item").eq(0).children(".lineTop,.leftWhite,.rightWhite").remove();
             } else {}
+            // tagBox.css({
+            //     width: tagBoxwidth + ((contentWidth) * 2 - tagBoxwidth + 50) + "px",
+            // });
             tagBox.css({
-                width: tagBoxwidth + ((contentWidth + 50) * 2 - tagBoxwidth + 40) + "px",
+                width: 340 + "px"
             });
+            // tagBox.css({
+            //     width: tagBoxwidth + ((contentWidth) * 2) + 120 + "px",
+            // });
+
             //把暂存区元素注入队列，后续处理
             walkList.push({
                 tag: tagBox,
@@ -144,6 +157,7 @@
             var diff = item.row.outerWidth() - (sumWidth(item.items)) * item.items.length;
 
             if (diff > 0) {
+
                 item.row.css({
                     'paddingLeft': diff / 2 + "px"
                 });
@@ -225,10 +239,10 @@
     /**拖拽节点后处理布局**/
     function walkData(toPath, formPath) {
         var formPatharrray = formPath.split("-");
-        var toData = new Function("return dataArray" + "[" + toPath.split("-").join("].children[") + "]")();
-        var formData = new Function("return dataArray" + "[" + formPath.split("-").join("].children[") + "]")();
+        var toData = new Function("dataArray", "return dataArray" + "[" + toPath.split("-").join("].children[") + "]")(dataArray);
+        var formData = new Function("dataArray", "return dataArray" + "[" + formPath.split("-").join("].children[") + "]")(dataArray);
         var popIndex = formPatharrray.pop();
-        var formParent = new Function("return dataArray" + "[" + formPatharrray.join("].children[") + "]")();
+        var formParent = new Function("dataArray", "return dataArray" + "[" + formPatharrray.join("].children[") + "]")(dataArray);
         if (toData.children) {
             toData.children.push(formData);
             formParent.children.splice(popIndex, 1);
@@ -239,6 +253,8 @@
         formParent.children.length == 0 && (formParent.children = "")
         $("." + namespace).html(buildNode(dataArray)); // 插入模板
         renderLayout(); // 渲染布局
+
+
     }
 
     function init() {
@@ -248,14 +264,21 @@
     }
     $.fn[namespace] = function(options) {
         var defaults = {
+                version: "1.0",
                 isdrop: true,
                 data: [],
+                css: {
+                    lineColor: "black",
+                    background: "#fff"
+                },
                 style: document.createElement('style'),
-                thems: ".OkrTree .row{zoom:1}.OkrTree .row::after{content:\" \";display:block;clear:both}.OkrTree .item{display:table-cell;position:relative;text-align:center}.OkrTree .line{margin:auto;height:20px}.OkrTree .line .left{width:50%;height:100%;float:left;box-sizing:border-box;border-right:solid 1px red;border-bottom:solid 2px red}.OkrTree .line .right{width:50%;height:100%;float:left;box-sizing:border-box;border-left:solid 1px red;border-bottom:solid 2px red}.OkrTree .row .item:first-child{margin-left:0}.OkrTree .content{text-align:center;margin:auto;box-sizing:border-box;padding:0 10px;border-radius:4px;white-space:normal}.OkrTree .content>.template{width:200px;margin:auto;background:#eee;padding:10px;border-radius:4px;word-break:break-all;white-space:pre-wrap}.OkrTree .lineTop{width:0;border:solid 1px red;height:20px;background-color:red;margin:auto}.OkrTree .leftWhite{width:50%;height:2px;background-color:#fff;margin-top:-2px;position:absolute;z-index:1;margin-left:-1px;left:0}.OkrTree .rightWhite{width:50%;height:2px;background-color:#fff;margin-top:-2px;position:absolute;z-index:1;margin-right:-1px;right:0}.OkrTree .tagBox{overflow:hidden;min-height:50px;box-sizing:border-box}.OkrTree .tagBox>div{float:left;width:50%;height:100%;box-sizing:border-box;border-bottom:solid 2px red}.OkrTree .tagBox div.tagLeft{border-right:solid 1px red;position:relative}.OkrTree .tagBox div.tagLeft .noneLine{position:absolute;border-bottom:solid 2px #fff;left:0;bottom:-2px;height:0}.OkrTree .tagBox>.tagDownLine{width:0px;border-right:2px solid red;position:absolute;left:50%;margin-left:-1px;height:50%}.OkrTree .tagBox div.tagRight{border-left:solid 1px red;position:relative}.OkrTree .tagBox div.tagRight>.line{width:50px;height:0;top:50%;margin-top:-1px;border-bottom:solid 2px red;position:absolute}.OkrTree .tagBox div.tagRight .noneLine{position:absolute;border-bottom:solid 2px #fff;right:0;bottom:-2px;height:0;width:50%}.OkrTree .tagContent{position:absolute;top:50%;left:50px;padding:10px;width:auto;text-align:center;background:orangered;border-radius:4px;color:#fff}.OkrTree .tagBox div.tagRight .tagItem{height:40px;background-color:green;position:absolute;right:0;top:50%;margin-top:-20px;border-radius:2px;color:#fff;text-align:center;line-height:40px}.OkrTree .expandIcon{display:inline-block;width:20px;height:20px;background-color:red;color:#fff;font-size:100%;line-height:20px;text-align:center;border-radius:50%;cursor:pointer;font-weight:bold}.OkrTree .template{border:solid 1px transparent}"
+
             },
-            opts = $.extend({}, defaults, options);
+            opts = $.extend({}, defaults, options),
+            style = ".OkrTree{;background:".concat(opts.css.background, ";}.OkrTree .row{zoom:1}.OkrTree .row::after{content:\" \";display:block;clear:both}.OkrTree .item{display:table-cell;position:relative;text-align:center}.OkrTree .line{margin:auto;height:20px}.OkrTree .line .left{width:50%;height:100%;float:left;box-sizing:border-box;border-right:solid 1px ").concat(opts.css.lineColor, ";border-bottom:solid 2px ").concat(opts.css.lineColor, "}.OkrTree .line .right{width:50%;height:100%;float:left;box-sizing:border-box;border-left:solid 1px ").concat(opts.css.lineColor, ";border-bottom:solid 2px ").concat(opts.css.lineColor, "}.OkrTree .row .item:first-child{margin-left:0}.OkrTree .content{text-align:center;margin:auto;box-sizing:border-box;padding:0 10px;border-radius:4px;white-space:normal}.OkrTree .content>.template{width:auto;margin:auto;display:inline-block;border-radius:4px;word-break:break-all;white-space:pre-wrap}.OkrTree .lineTop{width:0;border:solid 1px ").concat(opts.css.lineColor, ";height:20px;background-color:").concat(opts.css.lineColor, ";margin:auto}.OkrTree .leftWhite{width:50%;height:2px;background-color:").concat(opts.css.background, ";margin-top:-2px;position:absolute;z-index:1;margin-left:-1px;left:0}.OkrTree .rightWhite{width:50%;height:2px;background-color:").concat(opts.css.background, ";margin-top:-2px;position:absolute;z-index:1;margin-right:-1px;right:0}.OkrTree .tagBox{overflow:hidden;min-height:50px;box-sizing:border-box}.OkrTree .tagBox>div{float:left;width:50%;height:100%;box-sizing:border-box;border-bottom:solid 2px ").concat(opts.css.lineColor, "}.OkrTree .tagBox div.tagLeft{border-right:solid 1px ").concat(opts.css.lineColor, ";position:relative}.OkrTree .tagBox div.tagLeft .noneLine{position:absolute;border-bottom:solid 2px ").concat(opts.css.background, ";left:0;bottom:-2px;height:0}.OkrTree .tagBox>.tagDownLine{width:0px;border-right:2px solid ").concat(opts.css.lineColor, ";position:absolute;left:50%;margin-left:-1px;height:50%}.OkrTree .tagBox div.tagRight{border-left:solid 1px ").concat(opts.css.lineColor, ";position:relative}.OkrTree .tagBox div.tagRight>.line{width:50px;height:0;top:50%;margin-top:-1px;border-bottom:solid 2px ").concat(opts.css.lineColor, ";position:absolute}.OkrTree .tagBox div.tagRight .noneLine{position:absolute;border-bottom:solid 2px ").concat(opts.css.background, ";right:0;bottom:-2px;height:0;width:50%}.OkrTree .tagContent{position:absolute;top:50%;left:50px;width:auto;text-align:center;border-radius:4px;}.OkrTree .tagBox div.tagRight .tagItem{height:40px;background-color:green;position:absolute;right:0;top:50%;margin-top:-20px;border-radius:2px;color:").concat(opts.css.background, ";text-align:center;line-height:40px}.OkrTree .expandIcon{display:inline-block;width:20px;height:20px;background-color:").concat(opts.css.lineColor, ";color:").concat(opts.css.background, ";font-size:100%;line-height:20px;text-align:center;border-radius:50%;cursor:pointer;font-weight:bold}.OkrTree .template{border:solid 1px transparent;}");
+        //style = `.OkrTree{background:${opts.css.background};}.OkrTree .row{zoom:1}.OkrTree .row::after{content:\" \";display:block;clear:both}.OkrTree .item{display:table-cell;position:relative;text-align:center}.OkrTree .line{margin:auto;height:20px}.OkrTree .line .left{width:50%;height:100%;float:left;box-sizing:border-box;border-right:solid 1px ${opts.css.line};border-bottom:solid 2px ${opts.css.line}}.OkrTree .line .right{width:50%;height:100%;float:left;box-sizing:border-box;border-left:solid 1px ${opts.css.line};border-bottom:solid 2px ${opts.css.line}}.OkrTree .row .item:first-child{margin-left:0}.OkrTree .content{text-align:center;margin:auto;box-sizing:border-box;padding:0 10px;border-radius:4px;white-space:normal}.OkrTree .content>.template{width:auto;margin:auto;display:inline-block;border-radius:4px;word-break:break-all;white-space:pre-wrap}.OkrTree .lineTop{width:0;border:solid 1px ${opts.css.line};height:20px;background-color:${opts.css.line};margin:auto}.OkrTree .leftWhite{width:50%;height:2px;background-color:${opts.css.background};margin-top:-2px;position:absolute;z-index:1;margin-left:-1px;left:0}.OkrTree .rightWhite{width:50%;height:2px;background-color:${opts.css.background};margin-top:-2px;position:absolute;z-index:1;margin-right:-1px;right:0}.OkrTree .tagBox{overflow:hidden;min-height:50px;box-sizing:border-box}.OkrTree .tagBox>div{float:left;width:50%;height:100%;box-sizing:border-box;border-bottom:solid 2px ${opts.css.line}}.OkrTree .tagBox div.tagLeft{border-right:solid 1px ${opts.css.line};position:relative}.OkrTree .tagBox div.tagLeft .noneLine{position:absolute;border-bottom:solid 2px ${opts.css.background};left:0;bottom:-2px;height:0}.OkrTree .tagBox>.tagDownLine{width:0px;border-right:2px solid ${opts.css.line};position:absolute;left:50%;margin-left:-1px;height:50%}.OkrTree .tagBox div.tagRight{border-left:solid 1px ${opts.css.line};position:relative}.OkrTree .tagBox div.tagRight>.line{width:50px;height:0;top:50%;margin-top:-1px;border-bottom:solid 2px ${opts.css.line};position:absolute}.OkrTree .tagBox div.tagRight .noneLine{position:absolute;border-bottom:solid 2px ${opts.css.background};right:0;bottom:-2px;height:0;width:50%}.OkrTree .tagContent{position:absolute;top:50%;left:50px;width:auto;text-align:center;border-radius:4px;}.OkrTree .tagBox div.tagRight .tagItem{height:40px;background-color:green;position:absolute;right:0;top:50%;margin-top:-20px;border-radius:2px;color:${opts.css.background};text-align:center;line-height:40px}.OkrTree .expandIcon{display:inline-block;width:20px;height:20px;background-color:${opts.css.line};color:${opts.css.background};font-size:100%;line-height:20px;text-align:center;border-radius:50%;cursor:pointer;font-weight:bold}.OkrTree .template{border:solid 1px transparent;}`;
         this.addClass(namespace);
-        opts.style.innerHTML = opts.thems;
+        opts.style.innerHTML = style;
         document.getElementsByTagName('head')[0].appendChild(opts.style);
         dataArray = opts.data instanceof Array && opts.data;
         typeof opts.itemTemplate == 'function' && (itemCallback = opts.itemTemplate);
