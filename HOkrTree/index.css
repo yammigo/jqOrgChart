@@ -1,0 +1,117 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.node-parent,
+.node-childrens {
+    display: table-cell;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.node {
+    border-radius: 60px;
+    line-height: 60px;
+    text-align: center;
+    line-height: 60px;
+    box-sizing: border-box;
+}
+
+.node-cell {
+    position: relative;
+    padding: 10px;
+    padding-left: 20px;
+}
+
+.node-lines {
+    position: absolute;
+    left: 0px;
+    height: 100%;
+    top: 0px;
+}
+
+.line {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.line>.line-right {
+    width: 15px;
+    border-bottom: solid 1px red;
+}
+
+.line-top,
+.line-bottom {
+    height: 50%;
+    border-left: solid 1px red;
+    width: 20px;
+    /* box-sizing: border-box; */
+    box-sizing: border-box;
+}
+
+.expandIcon {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.expandIcon>div {
+    display: inline-block;
+    height: 18px;
+    width: 18px;
+    background: orange;
+    color: #fff;
+    font-size: 12px;
+    line-height: 15px;
+    border-radius: 50%;
+    position: relative;
+    top: -2px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.line-top {
+    border-bottom: solid 1px red;
+}
+
+.line-top.first {
+    border: none;
+    border-bottom: solid 1px red;
+    /* border-bottom: solid 1px red; */
+}
+
+.line-bottom.last {
+    border: none;
+}
+
+.tagBox {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.tagNode {
+    position: relative;
+}
+
+.tag-line {
+    height: 50px;
+    border-bottom: solid 1px red;
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    width: 100%;
+}
+
+.tag-node {
+    background: grey;
+    border-radius: 3px;
+    color: #fff;
+}
+
+.taglineDown {
+    width: 0px;
+    border-left: solid 1px red;
+    height: 100%;
+    margin: auto;
+}

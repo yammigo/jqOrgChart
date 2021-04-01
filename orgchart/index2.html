@@ -1,0 +1,403 @@
+<!DOCTYPE html PUBLIC"-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>集团组织结构</title>
+    <script src="http://cdn.bootcss.com/jquery/1.12.3/jquery.min.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <STYLE type=text/css>
+        ul,
+        li {
+            list-style: none;
+            margin: 0px;
+            padding: 0px;
+            z-index: 2px;
+        }
+        
+        .jiegou {
+            margin-left: 20px;
+            font-size: 12px;
+            linge-height: 20px;
+        }
+        
+        .jiegou li {
+            width: 300px;
+        }
+        
+        .jiegou b {
+            font-weight: normal;
+            border: 4px solid #ddd;
+            border-radius: 15px;
+            padding: 0 10px 0 10px;
+            background: #a00;
+            color: #fff;
+            height: 20px;
+            display: inline-block;
+            margin-bottom: 5px;
+            line-height: 20px;
+            min-width: 160px;
+            cursor: pointer;
+            transition: all 0.2s;
+            z-index: 9999;
+            background-color: #d0451b;
+        }
+        
+        .jiegou b:hover {
+            background-color: #fff;
+            color: #900;
+            opacity: 0.8
+        }
+        
+        .jiegou li {
+            position: relative;
+        }
+        
+        .jiegou ul {
+            margin-left: 60px;
+        }
+        
+        .jiegou li.jd {
+            margin-left: 150px;
+            height: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .jiegou li.jd>b {
+            position: absolute;
+            left: -90px;
+            z-index: 9999;
+            left: -150px;
+        }
+        
+        .jiegou li.jd>div {
+            position: absolute;
+            left: -20px;
+            top: 1px;
+        }
+        
+        .xiantiao {
+            width: 60px;
+            border-left: 1px solid #666;
+            border-bottom: 1px solid #666;
+            position: absolute;
+            left: 20px;
+            top: 26px;
+            z-index: -1;
+        }
+        
+        .cl:after {
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+    </STYLE>
+
+    <UL class=jiegou>
+        <LI>
+            <B>董事长</B>
+            <ul>
+                <LI>
+                    <B>董事会</B>
+                </LI>
+            </ul>
+        </LI>
+        <!-- <LI>
+            <B>副董事长</B>
+            <ul>
+                <LI>
+                    <B>董事长办公室</B>
+                </LI>
+            </ul>
+        </LI> -->
+        <!-- <LI>
+            <B>总经理</B> -->
+        <ul>
+            <LI>
+                <B>副总经理</B>
+            </LI>
+            <LI>
+                <B>副总经理</B>
+            </LI>
+            <LI>
+                <B>副总经理</B>
+            </LI>
+            <LI>
+                <B>副总经理</B>
+            </LI>
+            <li class="jd" style="margin-left:200px;">
+                <div style="top:-130px;">
+                    <ul>
+                        <LI>
+                            <B>职能部门</B>
+                            <ul>
+                                <LI>
+                                    <B>集团公司办公室</B>
+                                </LI>
+                                <LI>
+                                    <B>人力资源部</B>
+                                </LI>
+                                <LI>
+                                    <B>财务部</B>
+                                </LI>
+                                <LI>
+                                    <B>审计部</B>
+                                </LI>
+                                <LI>
+                                    <B>信息安全部</B>
+                                </LI>
+                                <LI>
+                                    <B>法律事务部</B>
+                                </LI>
+                                <LI>
+                                    <B>资产管理部</B>
+                                </LI>
+                                <LI>
+                                    <B>安全保卫部</B>
+                                </LI>
+                                <LI>
+                                    <B>物业管理部</B>
+                                </LI>
+                            </ul>
+                        </LI>
+                        <LI>
+                            <B>子公司</B>
+                            <ul>
+                                <li class="jd" style="margin-left:350px;">
+                                    <b>一级子地产开发有限公司</b><b style="margin-left:250px;min-width:50px;">二级公司</b>
+                                    <div style="top:-510px;">
+                                        <ul>
+                                            <LI>
+                                                <B>二级子地产开发有限公司</B>
+                                            </LI>
+                                            <LI>
+                                                <B>二级子地产开发有限公司</B>
+                                            </LI>
+                                            <LI>
+                                                <B>二级子地产开发有限公司</B>
+                                            </LI>
+                                            <LI>
+                                                <B>二级子地产开发有限公司</B>
+                                            </LI>
+                                            <LI>
+                                                <B>二级子地产开发有限公司</B>
+                                            </LI>
+                                            <LI>
+                                                <B>二级子地产开发有限公司</B>
+                                            </LI>
+                                            <LI>
+                                                <B>二级子地产开发有限公司</B>
+                                            </LI>
+                                            <LI>
+                                                <B>二级子地产开发有限公司</B>
+                                            </LI>
+                                            <LI>
+                                                <B>二级子地产开发有限公司</B>
+                                            </LI>
+                                            <LI>
+                                                <B>二级子地产开发有限公司</B>
+                                            </LI>
+                                            <LI>
+                                                <B>二级子地产开发有限公司</B>
+                                            </LI>
+                                            <LI>
+                                                <B>二级子地产开发有限公司</B>
+                                            </LI>
+                                            <LI>
+                                                <B>二级子地产开发有限公司</B>
+                                            </LI>
+                                            <LI>
+                                                <B>二级子地产开发有限公司</B>
+                                            </LI>
+                                            <LI>
+                                                <B>二级子地产开发有限公司</B>
+                                            </LI>
+                                            <LI>
+                                                <B>二级子地产开发有限公司</B>
+                                            </LI>
+                                            <LI>
+                                                <B>二级子地产开发有限公司</B>
+                                            </LI>
+                                            <LI>
+                                                <B>二级子地产开发有限公司</B>
+                                            </LI>
+                                            <LI>
+                                                <B>二级子地产开发有限公司</B>
+                                            </LI>
+                                            <LI>
+                                                <B>二级子地产开发有限公司</B>
+                                            </LI>
+                                            <LI>
+                                                <B>二级子地产开发有限公司</B>
+                                            </LI>
+                                        </ul>
+                                    </div>
+                                </LI>
+                                <LI>
+                                    <B>一级子地产开发有限公司</B>
+                                </LI>
+                                <LI>
+                                    <B>一级子地产开发有限公司</B>
+                                </LI>
+                                <LI>
+                                    <B>一级子地产开发有限公司</B>
+                                </LI>
+                                <LI>
+                                    <B>一级子地产开发有限公司</B>
+                                </LI>
+                                <LI>
+                                    <B>一级子地产开发有限公司</B>
+                                </LI>
+                                <li class="jd" style="margin-left:350px;">
+                                    <b>一级子地产开发有限公司</b><b style="margin-left:250px;min-width:50px;">二级公司</b>
+                                    <div style="top:-12px;">
+                                        <ul>
+                                            <LI>
+                                                <B>二级子地产开发有限公司</B>
+                                            </LI>
+                                            <LI>
+                                                <B>二级子地产开发有限公司</B>
+                                            </LI>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </LI>
+                        <LI>
+                            <B>业务部门</B>
+                            <ul>
+                                <LI>
+                                    <B>规划设计部</B>
+                                    <ul>
+                                        <LI>
+                                            <B>设计一部</B>
+                                        </LI>
+                                        <LI>
+                                            <B>设计二部</B>
+                                        </LI>
+                                        <LI>
+                                            <B>设计三部</B>
+                                        </LI>
+                                        <LI>
+                                            <B>设计四部</B>
+                                        </LI>
+                                        <LI>
+                                            <B>设计五部</B>
+                                        </LI>
+                                    </ul>
+                                </LI>
+                                <LI>
+                                    <B>成本管理中心</B>
+                                    <ul>
+                                        <LI>
+                                            <B>审核部</B>
+                                        </LI>
+                                        <LI>
+                                            <B>招投标部</B>
+                                        </LI>
+                                        <LI>
+                                            <B>造价部</B>
+                                        </LI>
+                                        <LI>
+                                            <B>采购部</B>
+                                        </LI>
+                                    </ul>
+                                </LI>
+                                <LI>
+                                    <B>工程管理中心</B>
+                                    <ul>
+                                        <LI>
+                                            <B>总工办</B>
+                                        </LI>
+                                        <LI>
+                                            <B>工程一部</B>
+                                        </LI>
+                                        <LI>
+                                            <B>工程二部</B>
+                                        </LI>
+                                        <LI>
+                                            <B>工程三部</B>
+                                        </LI>
+                                        <LI>
+                                            <B>工程四部</B>
+                                        </LI>
+                                        <LI>
+                                            <B>工程五部</B>
+                                        </LI>
+                                    </ul>
+                                </LI>
+                                <LI>
+                                    <B>融资中心</B>
+                                    <ul>
+                                        <LI>
+                                            <B>融资一部</B>
+                                        </LI>
+                                        <LI>
+                                            <B>融资二部</B>
+                                        </LI>
+                                        <LI>
+                                            <B>融资三部</B>
+                                        </LI>
+                                        <LI>
+                                            <B>融资四部</B>
+                                        </LI>
+                                        <LI>
+                                            <B>融资五部</B>
+                                        </LI>
+                                    </ul>
+                                </LI>
+
+                            </ul>
+                        </LI>
+                    </ul>
+                </div>
+            </li>
+            <LI>
+                <B>副总经理</B>
+            </LI>
+            <LI>
+                <B>副总经理</B>
+            </LI>
+            <LI>
+                <B>副总经理</B>
+            </LI>
+            <LI>
+                <B>副总经理</B>
+            </LI>
+        </ul>
+        <!-- </LI> -->
+
+    </UL>
+    <SCRIPT>
+        jQuery(document).ready(function() {
+            $(".jiegou li").each(function() {
+                $(this).parent().append('<div class="xiantiao" style="height:' + ($(this).offset().top - $(this).parent().offset().top + 20) + 'px;width:' + ($(this).offset().left - $(this).parent().parent().offset().left - 20) + 'px;"></div>');
+            });
+            $(".jiegou > div").each(function() {
+                $(this).css({
+                    left: '48px',
+                    top: ($(this).height() + 30) + 'px',
+                    height: '24px'
+                });
+            })
+            $("li.jd > div >ul >div").each(function() {
+                $(this).css({
+                    top: '12px',
+                    height: ($(this).height() - 20) + 'px'
+                });
+            });
+            $("li.jd > b").each(function() {
+                $(this).css({
+                    left: '-' + $(this).parent().css('margin-left').replace('px', '') + 'px'
+                });
+            });
+        });
+    </SCRIPT>
+</body>
+
+</html>

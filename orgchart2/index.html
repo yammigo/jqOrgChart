@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        .node-cell {
+            display: table-cell;
+            text-align: center;
+            margin: 10px;
+        }
+        
+        .node {
+            /* background: orange; */
+            /* padding: 10px; */
+        }
+        
+        .node-content {
+            display: inline-block;
+            color: red;
+            padding: 0px 15px;
+        }
+        
+        .node-line-down {
+            width: 1px;
+            margin: auto;
+            height: 20px;
+            background: grey;
+        }
+        
+        .node-lines {
+            overflow: hidden;
+            zoom: 1;
+        }
+        
+        .node-childrens {
+            display: inline;
+        }
+        
+        .node-line-left,
+        .node-line-right {
+            float: left;
+            width: 50%;
+            height: 1px;
+            border-top: solid 1px gray;
+            height: 10px;
+            border-left: solid 1px grey;
+            box-sizing: border-box;
+        }
+        
+        .node-line-left.first {
+            border: none;
+        }
+        
+        .tagBox {
+            /* display: table-cell; */
+            text-align: center;
+            /* vertical-align: middle; */
+            text-align: center;
+        }
+        
+        .tag-left,
+        .tag-right {
+            display: inline-block;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="node-cell">
+            <div class="node">
+                <div class="node-content">root</div>
+                <div class="node-lines">
+                    <div class="node-line-left"></div>
+                    <div class="node-line-right"></div>
+                    <div style="clear: both;"></div>
+                </div>
+
+            </div>
+
+            <div class="node-cell">
+                <div class="node">
+
+                    <div class="node-content">元素</div>
+                    <div class="node-lines">
+                        <div class="node-line-left"></div>
+                        <div class="node-line-right"></div>
+                        <div style="clear: both;"></div>
+                    </div>
+                </div>
+                <div class="node-cell">
+                    <div class="node">
+                        <div class="node-lines">
+                            <div class="node-line-left"></div>
+                            <div class="node-line-right"></div>
+                            <div style="clear: both;"></div>
+                        </div>
+                        <div class="node-content">rzzoot</div>
+                    </div>
+                </div>
+                <div class="node-cell">
+                    <div class="node">
+                        <div class="node-lines">
+                            <div class="node-line-left"></div>
+                            <div class="node-line-right"></div>
+                            <div style="clear: both;"></div>
+                        </div>
+                        <div class="node-content">www</div>
+                    </div>
+                </div>
+                <div class="node-cell">
+
+                    <div class="node">
+
+                        <div class="node-lines">
+                            <div class="node-line-left"></div>
+                            <div class="node-line-right"></div>
+                            <div style="clear: both;"></div>
+                        </div>
+
+                        <div class="node-content">zzzzzzot</div>
+
+                    </div>
+
+                </div>
+                <div class="node-cell">
+                    <div class="node">
+                        <div class="node-lines">
+                            <div class="node-line-left"></div>
+                            <div class="node-line-right"></div>
+                            <div style="clear: both;"></div>
+                        </div>
+                        <div class="node-content">元素1</div>
+
+                    </div>
+                    <div class="tagBox" style="width:320px;height:30px;">
+                        <div class="tag-node">
+
+                        </div>
+                    </div>
+                    <div class="node-childrens">
+                        <div class="node-cell">
+                            <div class="node">
+                                <div class="node-lines">
+                                    <div class="node-line-left"></div>
+                                    <div class="node-line-right"></div>
+                                    <div style="clear: both;"></div>
+                                </div>
+                                <div class="node-content">root</div>
+                            </div>
+                        </div>
+                        <div class="node-cell">
+                            <div class="node">
+                                <div class="node-lines">
+                                    <div class="node-line-left"></div>
+                                    <div class="node-line-right"></div>
+
+                                </div>
+                                <div class="node-content">root</div>
+                            </div>
+                        </div>
+                        <div class="node-cell">
+                            <div class="node">
+                                <div class="node-lines">
+                                    <div class="node-line-left"></div>
+                                    <div class="node-line-right"></div>
+                                    <div style="clear: both;"></div>
+                                </div>
+                                <div class="node-content">root</div>
+                            </div>
+                        </div>
+                        <div class="node-cell">
+                            <div class="node">
+                                <div class="node-lines">
+                                    <div class="node-line-left"></div>
+                                    <div class="node-line-right"></div>
+                                    <div style="clear: both;"></div>
+                                </div>
+
+                                <div class="node-content">root</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="node-cell">
+                    <div class="node">
+                        <div class="node-lines">
+                            <div class="node-line-left"></div>
+                            <div class="node-line-right"></div>
+                            <div style="clear: both;"></div>
+                        </div>
+                        <div class="node-content">root</div>
+                    </div>
+                </div>
+                <div class="node-cell">
+                    <div class="node">
+                        <div class="node-lines">
+                            <div class="node-line-left"></div>
+                            <div class="node-line-right"></div>
+                            <div style="clear: both;"></div>
+                        </div>
+                        <div class="node-content">root最后的节点</div>
+                    </div>
+                    <div class="last-childrens">
+
+                        <div calss="children-node" style="box-sizing: content-box;">
+                            <div style="width:50%;border-top:solid 1px red;"></div>
+                            <div style="text-align:left">
+                                <div class="top" style="width:20px;display:inline-block;border-left:solid 1px red;position: relative;">
+                                    <div style="height:0px;border-bottom:solid 1px red;position: absolute;top:50%;margin-top:-1px;left:0px;width:100%;"></div>&nbsp;</div>
+                                <div class="node-down" style="display:inline-block">这是一个数据</div>
+                            </div>
+                            <div style="text-align:left">
+                                <div class="top" style="width:20px;display:inline-block;border-left:solid 1px red;position: relative;">
+                                    <div style="height:0px;border-bottom:solid 1px red;position: absolute;top:50%;margin-top:-1px;left:0px;width:100%;"></div>&nbsp;</div>
+                                <div class="node-down" style="display:inline-block">这是一个数据</div>
+                            </div>
+                            <div style="text-align:left">
+                                <div class="top" style="width:20px;display:inline-block;border-left:solid 1px red;position: relative;">
+                                    <div style="height:0px;border-bottom:solid 1px red;position: absolute;top:50%;margin-top:-1px;left:0px;width:100%;"></div>&nbsp;</div>
+                                <div class="node-down" style="display:inline-block">这是一个数据</div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+</html>

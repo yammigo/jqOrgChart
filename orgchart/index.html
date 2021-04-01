@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>documentSvg</title>
+    <script src="./orgchart.js"></script>
+</head>
+
+<body>
+    <div style="width: 100%; height: 700px" id="orgchart"></div>
+
+    <script>
+        var json = [{
+            id: "topId",
+            name: "总裁办",
+            position: "存在以下多个顶点！",
+            photos: "/Images/PER/bg_02.gif",
+            pid: "",
+            children: [{
+                id: "00008",
+                name: "lex",
+                position: "MR",
+                photos: "/Images/PER/bg_02.gif",
+                pid: "topId",
+                children: [],
+            }, {
+                id: "00009",
+                name: "lex",
+                position: "APM",
+                photos: "/Images/PER/bg_02.gif",
+                pid: "topId",
+                children: [],
+            }, {
+                id: "1110222",
+                name: "员工姓名",
+                position: "MR",
+                photos: "/Images/PER/bg_02.gif",
+                pid: "topId",
+                children: [],
+            }, {
+                id: "D0001",
+                name: "Lex",
+                position: "高级副总裁",
+                photos: "/OrgChart/D0001.JPG",
+                pid: "topId",
+                children: [{
+                    id: "D0002",
+                    type: "tag",
+                    name: "atest",
+                    position: "(兼)AM",
+                    photos: "/OrgChart/D0002.JPG",
+                    pid: "D0001",
+                    children: [],
+                }, ],
+            }, {
+                id: "D02043",
+                name: "大胖子",
+                position: "高级副总裁",
+                photos: "/OrgChart/D02043.JPG",
+                pid: "topId",
+                type: "tag",
+                children: [],
+            }, {
+                id: "D0730",
+                name: "LEX",
+                position: "AM",
+                photos: "/Images/PER/bg_02.gif",
+                pid: "topId",
+                children: [],
+            }, {
+                id: "D0732",
+                name: "test",
+                position: "AM",
+                photos: "/Images/PER/bg_02.gif",
+                pid: "topId",
+                children: [],
+            }, {
+                id: "101BJ559",
+                name: "肖锋",
+                position: "(兼)AM",
+                photos: "/Images/PER/bg_02.gif",
+                pid: "topId",
+                children: [],
+            }, ],
+        }, ];
+
+        function translateTreeToData(data) {
+            var result = [];
+            data.forEach(function(item) {
+                var loop = function(data, parentId) {
+                    var data = JSON.parse(JSON.stringify(data));
+                    data.pid = parentId;
+                    result.push(data);
+                    var child = data.children;
+                    delete data['children'];
+
+                    if (child) {
+                        parentId = data.id;
+
+                        for (var i = 0; i < child.length; i++) {
+                            loop(child[i], parentId);
+                        }
+                    }
+                };
+
+                loop(item);
+            });
+            return result;
+        }
+        var data = translateTreeToData([{
+            id: 1,
+            name: "fanjiantao1",
+            children: [{
+                id: 2,
+                name: 'famjiantao2',
+                children: [{
+                    id: 3,
+                    name: "fanjiantao3",
+                    tags: ["assistant"]
+                }, {
+                    id: 8,
+                    name: "fanjiantao3"
+                }]
+            }, {
+                id: 4,
+                name: 'famjiantao2',
+                children: [{
+                    id: 9,
+                    name: "fanjiantao3",
+                    tags: ["assistant"]
+                }, {
+                    id: 12,
+                    name: "fanjiantao3"
+                }]
+            }, {
+                id: 5,
+                name: 'famjiantao2',
+                children: [{
+                    id: 20,
+                    name: "fanjiantao3",
+                    tags: ["assistant"]
+                }, {
+                    id: 21,
+                    name: "fanjiantao3"
+                }]
+            }]
+        }])
+
+
+        var chart = new OrgChart(document.getElementById("orgchart"), {
+            enableDragDrop: true,
+            orientation: OrgChart.orientation.left,
+            tags: {
+                "assistant": {
+                    template: "ula"
+                }
+            },
+            nodeBinding: {
+                field_0: "name"
+            },
+            nodes: data
+        });
+
+
+        function donwonload() {
+            var svgXml = document.getElementById("orgchart").innerHTML;
+            console.log(svgXml);
+            var image = new Image();
+            image.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(svgXml))); //给图片对象写入base64编码的svg流
+            image.onload = function() { //使用onload是解决加载问题
+                canvas.width = $('.svg-wrap svg').width();
+                canvas.height = $('.svg-wrap svg').height();
+                var context = canvas.getContext('2d'); //取得画布的2d绘图上下文
+                context.drawImage(image, 0, 0);
+                var a = document.createElement('a');
+                a.href = canvas.toDataURL('image/png'); //将画布内的信息导出为png图片数据
+                a.download = "MapByMathArtSys"; //设定下载名称
+                a.click(); //点击触发下载
+            }
+        }
+
+        setTimeout(function() {
+            donwonload()
+        }, 5000)
+    </script>
+</body>
+
+</html>

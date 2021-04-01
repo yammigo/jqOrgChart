@@ -1,0 +1,135 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.TAGDD .node-parent,
+
+.TAGDD .node-childrens {
+    display: table-cell;
+    height: 100%;
+    vertical-align: middle;
+}
+
+
+.TAGDD .node {
+    border-radius: 60px;
+    line-height: 60px;
+    text-align: center;
+    line-height: 60px;
+    box-sizing: border-box;
+}
+
+
+.TAGDD .node-cell {
+    position: relative;
+    padding: 10px;
+    padding-left: 20px;
+}
+
+
+.TAGDD .node-lines {
+    position: absolute;
+    left: 0px;
+    height: 100%;
+    top: 0px;
+}
+
+
+.TAGDD .line {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+.TAGDD .line>.line-right {
+    width: 15px;
+    border-bottom: solid 1px red;
+}
+
+
+.TAGDD .line-top,
+
+.TAGDD .line-bottom {
+    height: 50%;
+    border-left: solid 1px red;
+    width: 20px;
+    /* box-sizing: border-box; */
+    box-sizing: border-box;
+}
+
+
+.TAGDD .expandIcon {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+.TAGDD .expandIcon>div {
+    display: inline-block;
+    height: 18px;
+    width: 18px;
+    background: orange;
+    color: #fff;
+    font-size: 12px;
+    line-height: 15px;
+    border-radius: 50%;
+    position: relative;
+    top: -2px;
+    cursor: pointer;
+    text-align: center;
+}
+
+
+.TAGDD .line-top {
+    border-bottom: solid 1px red;
+}
+
+
+.TAGDD .line-top.first {
+    border: none;
+    border-bottom: solid 1px red;
+    /* border-bottom: solid 1px red; */
+}
+
+
+.TAGDD .line-bottom.last {
+    border: none;
+}
+
+
+.TAGDD .tagBox {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+.TAGDD .tagNode {
+    position: relative;
+}
+
+
+.TAGDD .tag-line {
+    height: 50px;
+    border-bottom: solid 1px red;
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    width: 100%;
+}
+
+
+.TAGDD .tag-node {
+    background: grey;
+    border-radius: 3px;
+    color: #fff;
+}
+
+
+.TAGDD .taglineDown {
+    width: 0px;
+    border-left: solid 1px red;
+    height: 100%;
+    margin: auto;
+}
